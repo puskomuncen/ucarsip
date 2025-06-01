@@ -35,7 +35,7 @@ $TIME_ZONE = "UTC";
 /**
  * Global variables
  */
-$LANGUAGES = ["en-US","id-ID"];
+$LANGUAGES = ["en-US"];
 $Conn = null; // Primary connection
 $Page = null; // Page
 $Table = null; // Main table
@@ -302,7 +302,7 @@ $CONFIG = [
     // Language settings
     "LANGUAGES_FILE" => "languages.xml",
     "LANGUAGE_FOLDER" => __DIR__ . "/../lang/",
-    "DEFAULT_LANGUAGE_ID" => "id-ID",
+    "DEFAULT_LANGUAGE_ID" => "en-US",
     "LOCALE_FOLDER" => __DIR__ . "/../locale/",
     "USE_TRANSACTION" => true,
 

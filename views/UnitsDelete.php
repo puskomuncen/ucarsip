@@ -59,6 +59,9 @@ $Page->showMessage();
 <?php if ($Page->kode_unit->Visible) { // kode_unit ?>
         <th class="<?= $Page->kode_unit->headerCellClass() ?>"><span id="elh_units_kode_unit" class="units_kode_unit"><?= $Page->kode_unit->caption() ?></span></th>
 <?php } ?>
+<?php if ($Page->created_at->Visible) { // created_at ?>
+        <th class="<?= $Page->created_at->headerCellClass() ?>"><span id="elh_units_created_at" class="units_created_at"><?= $Page->created_at->caption() ?></span></th>
+<?php } ?>
     </tr>
     </thead>
     <tbody>
@@ -101,6 +104,14 @@ while ($Page->fetch()) {
 <span id="">
 <span<?= $Page->kode_unit->viewAttributes() ?>>
 <?= $Page->kode_unit->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($Page->created_at->Visible) { // created_at ?>
+        <td<?= $Page->created_at->cellAttributes() ?>>
+<span id="">
+<span<?= $Page->created_at->viewAttributes() ?>>
+<?= $Page->created_at->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

@@ -180,8 +180,7 @@ while ($Page->fetch()) {
         <td<?= $Page->file_url->cellAttributes() ?>>
 <span id="">
 <span<?= $Page->file_url->viewAttributes() ?>>
-<?= GetFileViewTag($Page->file_url, $Page->file_url->getViewValue(), false) ?>
-</span>
+<?= $Page->file_url->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

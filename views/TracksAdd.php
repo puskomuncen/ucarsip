@@ -22,7 +22,7 @@ loadjs.ready(["wrapper", "head"], function () {
 
         // Add fields
         .setFields([
-            ["letter_id", [fields.letter_id.visible && fields.letter_id.required ? ew.Validators.required(fields.letter_id.caption) : null], fields.letter_id.isInvalid],
+            ["letter_id", [fields.letter_id.visible && fields.letter_id.required ? ew.Validators.required(fields.letter_id.caption) : null, ew.Validators.integer], fields.letter_id.isInvalid],
             ["user_id", [fields.user_id.visible && fields.user_id.required ? ew.Validators.required(fields.user_id.caption) : null, ew.Validators.integer], fields.user_id.isInvalid],
             ["_action", [fields._action.visible && fields._action.required ? ew.Validators.required(fields._action.caption) : null], fields._action.isInvalid],
             ["keterangan", [fields.keterangan.visible && fields.keterangan.required ? ew.Validators.required(fields.keterangan.caption) : null], fields.keterangan.isInvalid],
@@ -42,7 +42,6 @@ loadjs.ready(["wrapper", "head"], function () {
 
         // Dynamic selection lists
         .setLists({
-            "letter_id": <?= $Page->letter_id->toClientList($Page) ?>,
             "_action": <?= $Page->_action->toClientList($Page) ?>,
         })
         .build();
@@ -94,43 +93,23 @@ $Page->showMessage();
         <label id="elh_tracks_letter_id" for="x_letter_id" class="<?= $Page->LeftColumnClass ?>"><?= $Page->letter_id->caption() ?><?= $Page->letter_id->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
         <div class="<?= $Page->RightColumnClass ?>"><div<?= $Page->letter_id->cellAttributes() ?>>
 <span id="el_tracks_letter_id">
-    <select
-        id="x_letter_id"
-        name="x_letter_id"
-        class="form-select ew-select<?= $Page->letter_id->isInvalidClass() ?>"
-        <?php if (!$Page->letter_id->IsNativeSelect) { ?>
-        data-select2-id="ftracksadd_x_letter_id"
-        <?php } ?>
-        data-table="tracks"
-        data-field="x_letter_id"
-        data-value-separator="<?= $Page->letter_id->displayValueSeparatorAttribute() ?>"
-        data-placeholder="<?= HtmlEncode($Page->letter_id->getPlaceHolder()) ?>"
-        <?= $Page->letter_id->editAttributes() ?>>
-        <?= $Page->letter_id->selectOptionListHtml("x_letter_id") ?>
-    </select>
-    <?= $Page->letter_id->getCustomMessage() ?>
-    <div class="invalid-feedback"><?= $Page->letter_id->getErrorMessage() ?></div>
-<?= $Page->letter_id->Lookup->getParamTag($Page, "p_x_letter_id") ?>
-<?php if (!$Page->letter_id->IsNativeSelect) { ?>
+<input type="<?= $Page->letter_id->getInputTextType() ?>" name="x_letter_id" id="x_letter_id" data-table="tracks" data-field="x_letter_id" value="<?= $Page->letter_id->getEditValue() ?>" size="30" placeholder="<?= HtmlEncode($Page->letter_id->getPlaceHolder()) ?>" data-format-pattern="<?= HtmlEncode($Page->letter_id->formatPattern()) ?>"<?= $Page->letter_id->editAttributes() ?> aria-describedby="x_letter_id_help">
+<?= $Page->letter_id->getCustomMessage() ?>
+<div class="invalid-feedback"><?= $Page->letter_id->getErrorMessage() ?></div>
 <script<?= Nonce() ?>>
-loadjs.ready("ftracksadd", function() {
-    var options = { name: "x_letter_id", selectId: "ftracksadd_x_letter_id" },
-        el = document.querySelector("select[data-select2-id='" + options.selectId + "']");
-    if (!el)
-        return;
-    options.closeOnSelect = !options.multiple;
-    options.dropdownParent = el.closest("#ew-modal-dialog, #ew-add-opt-dialog");
-    if (ftracksadd.lists.letter_id?.lookupOptions.length) {
-        options.data = { id: "x_letter_id", form: "ftracksadd" };
-    } else {
-        options.ajax = { id: "x_letter_id", form: "ftracksadd", limit: ew.LOOKUP_PAGE_SIZE };
-    }
-    options.minimumResultsForSearch = Infinity;
-    options = Object.assign({}, ew.selectOptions, options, ew.vars.tables.tracks.fields.letter_id.selectOptions);
-    ew.createSelect(options);
+loadjs.ready(['ftracksadd', 'jqueryinputmask'], function() {
+	options = {
+		'alias': 'numeric',
+		'autoUnmask': true,
+		'jitMasking': false,
+		'groupSeparator': '<?php echo $GROUPING_SEPARATOR ?>',
+		'digits': 0,
+		'radixPoint': '<?php echo $DECIMAL_SEPARATOR ?>',
+		'removeMaskOnSubmit': true
+	};
+	ew.createjQueryInputMask("ftracksadd", "x_letter_id", jQuery.extend(true, "", options));
 });
 </script>
-<?php } ?>
 </span>
 </div></div>
     </div>

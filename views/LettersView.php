@@ -177,8 +177,7 @@ loadjs.ready("head", function () {
         <td data-name="file_url"<?= $Page->file_url->cellAttributes() ?>>
 <span id="el_letters_file_url">
 <span<?= $Page->file_url->viewAttributes() ?>>
-<?= GetFileViewTag($Page->file_url, $Page->file_url->getViewValue(), false) ?>
-</span>
+<?= $Page->file_url->getViewValue() ?></span>
 </span>
 </td>
     </tr>

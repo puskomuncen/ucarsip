@@ -417,7 +417,6 @@ class LettersDelete extends Letters
         // Set up lookup cache
         $this->setupLookupOptions($this->jenis);
         $this->setupLookupOptions($this->klasifikasi);
-        $this->setupLookupOptions($this->penerima_unit_id);
         $this->setupLookupOptions($this->status);
 
         // Set up Breadcrumb
@@ -608,8 +607,7 @@ class LettersDelete extends Letters
         $this->klasifikasi->setDbValue($row['klasifikasi']);
         $this->pengirim->setDbValue($row['pengirim']);
         $this->penerima_unit_id->setDbValue($row['penerima_unit_id']);
-        $this->file_url->Upload->DbValue = $row['file_url'];
-        $this->file_url->setDbValue($this->file_url->Upload->DbValue);
+        $this->file_url->setDbValue($row['file_url']);
         $this->status->setDbValue($row['status']);
         $this->created_by->setDbValue($row['created_by']);
         $this->created_at->setDbValue($row['created_at']);
@@ -714,35 +712,11 @@ class LettersDelete extends Letters
             $this->pengirim->ViewValue = $this->pengirim->CurrentValue;
 
             // penerima_unit_id
-            $curVal = strval($this->penerima_unit_id->CurrentValue);
-            if ($curVal != "") {
-                $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->lookupCacheOption($curVal);
-                if ($this->penerima_unit_id->ViewValue === null) { // Lookup from database
-                    $filterWrk = SearchFilter($this->penerima_unit_id->Lookup->getTable()->Fields["unit_id"]->searchExpression(), "=", $curVal, $this->penerima_unit_id->Lookup->getTable()->Fields["unit_id"]->searchDataType(), "DB");
-                    $sqlWrk = $this->penerima_unit_id->Lookup->getSql(false, $filterWrk, '', $this, true, true);
-                    $conn = Conn();
-                    $rswrk = $conn->executeQuery($sqlWrk)->fetchAllAssociative();
-                    $ari = count($rswrk);
-                    if ($ari > 0) { // Lookup values found
-                        $rows = [];
-                        foreach ($rswrk as $row) {
-                            $rows[] = $this->penerima_unit_id->Lookup->renderViewRow($row);
-                        }
-                        $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->displayValue($rows[0]);
-                    } else {
-                        $this->penerima_unit_id->ViewValue = FormatNumber($this->penerima_unit_id->CurrentValue, $this->penerima_unit_id->formatPattern());
-                    }
-                }
-            } else {
-                $this->penerima_unit_id->ViewValue = null;
-            }
+            $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->CurrentValue;
+            $this->penerima_unit_id->ViewValue = FormatNumber($this->penerima_unit_id->ViewValue, $this->penerima_unit_id->formatPattern());
 
             // file_url
-            if (!IsEmpty($this->file_url->Upload->DbValue)) {
-                $this->file_url->ViewValue = $this->file_url->Upload->DbValue;
-            } else {
-                $this->file_url->ViewValue = "";
-            }
+            $this->file_url->ViewValue = $this->file_url->CurrentValue;
 
             // status
             if (strval($this->status->CurrentValue) != "") {
@@ -801,7 +775,6 @@ class LettersDelete extends Letters
 
             // file_url
             $this->file_url->HrefValue = "";
-            $this->file_url->ExportHrefValue = $this->file_url->UploadPath . $this->file_url->Upload->DbValue;
             $this->file_url->TooltipValue = "";
 
             // status
@@ -947,8 +920,6 @@ class LettersDelete extends Letters
                 case "x_jenis":
                     break;
                 case "x_klasifikasi":
-                    break;
-                case "x_penerima_unit_id":
                     break;
                 case "x_status":
                     break;

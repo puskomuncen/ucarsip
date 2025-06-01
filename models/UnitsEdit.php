@@ -719,7 +719,7 @@ class UnitsEdit extends Units
             if (IsApi() && $val === null) {
                 $this->created_at->Visible = false; // Disable update for API request
             } else {
-                $this->created_at->setFormValue($val);
+                $this->created_at->setFormValue($val, true, $validate);
             }
             $this->created_at->CurrentValue = UnformatDateTime($this->created_at->CurrentValue, $this->created_at->formatPattern());
         }
@@ -874,6 +874,9 @@ class UnitsEdit extends Units
             $this->kode_unit->PlaceHolder = RemoveHtml($this->kode_unit->caption());
 
             // created_at
+            $this->created_at->setupEditAttributes();
+            $this->created_at->EditValue = FormatDateTime($this->created_at->CurrentValue, $this->created_at->formatPattern());
+            $this->created_at->PlaceHolder = RemoveHtml($this->created_at->caption());
 
             // Edit refer script
 
@@ -926,6 +929,9 @@ class UnitsEdit extends Units
                 if (!$this->created_at->IsDetailKey && IsEmpty($this->created_at->FormValue)) {
                     $this->created_at->addErrorMessage(str_replace("%s", $this->created_at->caption(), $this->created_at->RequiredErrorMessage));
                 }
+            }
+            if (!CheckDate($this->created_at->FormValue, $this->created_at->formatPattern())) {
+                $this->created_at->addErrorMessage($this->created_at->getErrorMessage(false));
             }
 
         // Return validate result
@@ -1038,7 +1044,6 @@ class UnitsEdit extends Units
         $this->kode_unit->setDbValueDef($newRow, $this->kode_unit->CurrentValue, $this->kode_unit->ReadOnly);
 
         // created_at
-        $this->created_at->CurrentValue = $this->created_at->getAutoUpdateValue(); // PHP
         $this->created_at->setDbValueDef($newRow, UnFormatDateTime($this->created_at->CurrentValue, $this->created_at->formatPattern()), $this->created_at->ReadOnly);
         return $newRow;
     }

@@ -136,7 +136,7 @@ class UnitsDelete extends Units
         $this->unit_id->setVisibility();
         $this->nama_unit->setVisibility();
         $this->kode_unit->setVisibility();
-        $this->created_at->Visible = false;
+        $this->created_at->setVisibility();
     }
 
     // Constructor
@@ -646,6 +646,10 @@ class UnitsDelete extends Units
             // kode_unit
             $this->kode_unit->HrefValue = "";
             $this->kode_unit->TooltipValue = "";
+
+            // created_at
+            $this->created_at->HrefValue = "";
+            $this->created_at->TooltipValue = "";
         }
 
         // Call Row Rendered event

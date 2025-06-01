@@ -1304,7 +1304,7 @@ class HelpGrid extends Help
         $item->OnLeft = true;
 
         // Drop down button for ListOptions
-        $this->ListOptions->UseDropDownButton = false;
+        $this->ListOptions->UseDropDownButton = true;
         $this->ListOptions->DropDownButtonPhrase = $this->language->phrase("ButtonListOptions");
         $this->ListOptions->UseButtonGroup = true;
         if ($this->ListOptions->UseButtonGroup && IsMobile()) {

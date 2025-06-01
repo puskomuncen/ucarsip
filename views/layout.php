@@ -42,7 +42,7 @@ $basePath = BasePath(true);
 <?php } ?>
 <?php // === End modification of Alertify Notification, by Masino Sinaga, September 9, 2023 === \\ ?>
 <link rel="stylesheet" href="<?= $basePath ?><?= AutoVersion("adminlte32/css/custom-style.css"); ?>">
-<link rel="stylesheet" href="<?= $basePath ?><?= AutoVersion("adminlte32/css/font-montserrat.css"); ?>">
+<link rel="stylesheet" href="<?= $basePath ?><?= AutoVersion("adminlte32/css/font-opensans.css"); ?>">
 <?php // === Begin modification by Masino Sinaga, September 9, 2023 === \\ ?>
 <?php if (Language()->Type == "DROPDOWN" || Language()->Type == "LI") { ?>
 <link rel="stylesheet" href="<?= $basePath ?>plugins/language-selector-dropdown/flags.css?v=1694586875">
@@ -392,7 +392,7 @@ loadjs.ready("alertifyjs", function () {
 				<?php } else { ?>
                 <div class="col-sm-6">
 				<?php } ?>
-                    <h1 class="m-0 text-dark"><?= CurrentPageHeading() ?> 
+                    <h1 class="m-0 text-dark"><?= CurrentPageHeading() ?> <small class="text-body-secondary"><?= CurrentPageSubheading() ?></small>
 					<?php if (MS_SHOW_HELP_ONLINE) { ?> 
 					&nbsp;<a href='javascript:void(0);' id='helponline' onclick='getHelp("<?php echo CurrentPageName(); ?>");' title='<?php echo $Language->phrase("Help"); ?>'><span class='fa fa-question-circle ew-icon'></span></a> 
 					 <?php } ?>

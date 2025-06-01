@@ -269,9 +269,6 @@ class Letters extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->jenis->Lookup = new Lookup($this->jenis, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
-            case "id-ID":
-                $this->jenis->Lookup = new Lookup($this->jenis, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
-                break;
             default:
                 $this->jenis->Lookup = new Lookup($this->jenis, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
@@ -305,9 +302,6 @@ class Letters extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
-                $this->klasifikasi->Lookup = new Lookup($this->klasifikasi, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
-                break;
-            case "id-ID":
                 $this->klasifikasi->Lookup = new Lookup($this->klasifikasi, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
             default:
@@ -358,27 +352,12 @@ class Letters extends DbTable implements LookupTableInterface
             false, // Force selection
             false, // Is Virtual search
             'FORMATTED TEXT', // View Tag
-            'SELECT' // Edit Tag
+            'TEXT' // Edit Tag
         );
         $this->penerima_unit_id->InputTextType = "text";
         $this->penerima_unit_id->Raw = true;
-        $this->penerima_unit_id->setSelectMultiple(false); // Select one
-        $this->penerima_unit_id->UsePleaseSelect = true; // Use PleaseSelect by default
-        $this->penerima_unit_id->PleaseSelectText = $this->language->phrase("PleaseSelect"); // "PleaseSelect" text
-        global $CurrentLanguage;
-        switch ($CurrentLanguage) {
-            case "en-US":
-                $this->penerima_unit_id->Lookup = new Lookup($this->penerima_unit_id, 'units', false, 'unit_id', ["unit_id","nama_unit","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`unit_id`, ''),'" . ValueSeparator(1, $this->penerima_unit_id) . "',COALESCE(`nama_unit`,''))");
-                break;
-            case "id-ID":
-                $this->penerima_unit_id->Lookup = new Lookup($this->penerima_unit_id, 'units', false, 'unit_id', ["unit_id","nama_unit","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`unit_id`, ''),'" . ValueSeparator(1, $this->penerima_unit_id) . "',COALESCE(`nama_unit`,''))");
-                break;
-            default:
-                $this->penerima_unit_id->Lookup = new Lookup($this->penerima_unit_id, 'units', false, 'unit_id', ["unit_id","nama_unit","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`unit_id`, ''),'" . ValueSeparator(1, $this->penerima_unit_id) . "',COALESCE(`nama_unit`,''))");
-                break;
-        }
         $this->penerima_unit_id->DefaultErrorMessage = $this->language->phrase("IncorrectInteger");
-        $this->penerima_unit_id->SearchOperators = ["=", "<>", "<", "<=", ">", ">=", "BETWEEN", "NOT BETWEEN", "IS NULL", "IS NOT NULL"];
+        $this->penerima_unit_id->SearchOperators = ["=", "<>", "IN", "NOT IN", "<", "<=", ">", ">=", "BETWEEN", "NOT BETWEEN", "IS NULL", "IS NOT NULL"];
         $this->Fields['penerima_unit_id'] = &$this->penerima_unit_id;
 
         // file_url
@@ -391,22 +370,18 @@ class Letters extends DbTable implements LookupTableInterface
             200, // Type
             255, // Size
             -1, // Date/Time format
-            true, // Is upload field
+            false, // Is upload field
             '`file_url`', // Virtual expression
             false, // Is virtual
             false, // Force selection
             false, // Is Virtual search
             'FORMATTED TEXT', // View Tag
-            'FILE' // Edit Tag
+            'TEXT' // Edit Tag
         );
         $this->file_url->InputTextType = "text";
         $this->file_url->Nullable = false; // NOT NULL field
         $this->file_url->Required = true; // Required field
-        $this->file_url->UploadAllowedFileExt = "pdf";
-        $this->file_url->UploadMaxFileSize = 500000;
-        $this->file_url->UploadMultiple = true;
-        $this->file_url->Upload->UploadMultiple = true;
-        $this->file_url->SearchOperators = ["=", "<>", "STARTS WITH", "NOT STARTS WITH", "LIKE", "NOT LIKE", "ENDS WITH", "NOT ENDS WITH", "IS EMPTY", "IS NOT EMPTY"];
+        $this->file_url->SearchOperators = ["=", "<>", "IN", "NOT IN", "STARTS WITH", "NOT STARTS WITH", "LIKE", "NOT LIKE", "ENDS WITH", "NOT ENDS WITH", "IS EMPTY", "IS NOT EMPTY"];
         $this->Fields['file_url'] = &$this->file_url;
 
         // status
@@ -434,9 +409,6 @@ class Letters extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
-                $this->status->Lookup = new Lookup($this->status, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
-                break;
-            case "id-ID":
                 $this->status->Lookup = new Lookup($this->status, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
             default:
@@ -1073,7 +1045,7 @@ class Letters extends DbTable implements LookupTableInterface
         $this->klasifikasi->DbValue = $row['klasifikasi'];
         $this->pengirim->DbValue = $row['pengirim'];
         $this->penerima_unit_id->DbValue = $row['penerima_unit_id'];
-        $this->file_url->Upload->DbValue = $row['file_url'];
+        $this->file_url->DbValue = $row['file_url'];
         $this->status->DbValue = $row['status'];
         $this->created_by->DbValue = $row['created_by'];
         $this->created_at->DbValue = $row['created_at'];
@@ -1084,13 +1056,6 @@ class Letters extends DbTable implements LookupTableInterface
     public function deleteUploadedFiles(array $row)
     {
         $this->loadDbValues($row);
-        $oldFiles = IsEmpty($row['file_url']) ? [] : explode(Config("MULTIPLE_UPLOAD_SEPARATOR"), $row['file_url']);
-        foreach ($oldFiles as $oldFile) {
-            $file = PathJoin($this->file_url->OldUploadPath, $oldFile);
-            if (FileExists($file)) {
-                DeleteFile($file);
-            }
-        }
     }
 
     // Record filter WHERE clause
@@ -1449,7 +1414,7 @@ class Letters extends DbTable implements LookupTableInterface
         $this->klasifikasi->setDbValue($row['klasifikasi']);
         $this->pengirim->setDbValue($row['pengirim']);
         $this->penerima_unit_id->setDbValue($row['penerima_unit_id']);
-        $this->file_url->Upload->DbValue = $row['file_url'];
+        $this->file_url->setDbValue($row['file_url']);
         $this->status->setDbValue($row['status']);
         $this->created_by->setDbValue($row['created_by']);
         $this->created_at->setDbValue($row['created_at']);
@@ -1548,35 +1513,11 @@ class Letters extends DbTable implements LookupTableInterface
         $this->pengirim->ViewValue = $this->pengirim->CurrentValue;
 
         // penerima_unit_id
-        $curVal = strval($this->penerima_unit_id->CurrentValue);
-        if ($curVal != "") {
-            $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->lookupCacheOption($curVal);
-            if ($this->penerima_unit_id->ViewValue === null) { // Lookup from database
-                $filterWrk = SearchFilter($this->penerima_unit_id->Lookup->getTable()->Fields["unit_id"]->searchExpression(), "=", $curVal, $this->penerima_unit_id->Lookup->getTable()->Fields["unit_id"]->searchDataType(), "DB");
-                $sqlWrk = $this->penerima_unit_id->Lookup->getSql(false, $filterWrk, '', $this, true, true);
-                $conn = Conn();
-                $rswrk = $conn->executeQuery($sqlWrk)->fetchAllAssociative();
-                $ari = count($rswrk);
-                if ($ari > 0) { // Lookup values found
-                    $rows = [];
-                    foreach ($rswrk as $row) {
-                        $rows[] = $this->penerima_unit_id->Lookup->renderViewRow($row);
-                    }
-                    $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->displayValue($rows[0]);
-                } else {
-                    $this->penerima_unit_id->ViewValue = FormatNumber($this->penerima_unit_id->CurrentValue, $this->penerima_unit_id->formatPattern());
-                }
-            }
-        } else {
-            $this->penerima_unit_id->ViewValue = null;
-        }
+        $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->CurrentValue;
+        $this->penerima_unit_id->ViewValue = FormatNumber($this->penerima_unit_id->ViewValue, $this->penerima_unit_id->formatPattern());
 
         // file_url
-        if (!IsEmpty($this->file_url->Upload->DbValue)) {
-            $this->file_url->ViewValue = $this->file_url->Upload->DbValue;
-        } else {
-            $this->file_url->ViewValue = "";
-        }
+        $this->file_url->ViewValue = $this->file_url->CurrentValue;
 
         // status
         if (strval($this->status->CurrentValue) != "") {
@@ -1635,7 +1576,6 @@ class Letters extends DbTable implements LookupTableInterface
 
         // file_url
         $this->file_url->HrefValue = "";
-        $this->file_url->ExportHrefValue = $this->file_url->UploadPath . $this->file_url->Upload->DbValue;
         $this->file_url->TooltipValue = "";
 
         // status
@@ -1817,11 +1757,6 @@ class Letters extends DbTable implements LookupTableInterface
     public function renderLookupForView(string $name, mixed $value): mixed
     {
         $this->RowType = RowType::VIEW;
-        if ($name == "letter_id") {
-            $clone = $this->letter_id->getClone()->setViewValue($value);
-            $clone->ViewValue = $clone->CurrentValue;
-            return $clone->getViewValue();
-        }
         if ($name == "nomor_surat") {
             $clone = $this->nomor_surat->getClone()->setViewValue($value);
             $clone->ViewValue = $clone->CurrentValue;
@@ -1846,123 +1781,8 @@ class Letters extends DbTable implements LookupTableInterface
     public function getFileData(string $fldparm, string $key, bool $resize, int $width = 0, int $height = 0, array $plugins = []): Response
     {
         global $DownloadFileName;
-        $width = ($width > 0) ? $width : Config("THUMBNAIL_DEFAULT_WIDTH");
-        $height = ($height > 0) ? $height : Config("THUMBNAIL_DEFAULT_HEIGHT");
 
-        // Set up field name / file name field / file type field
-        $fldName = "";
-        $fileNameFld = "";
-        $fileTypeFld = "";
-        if ($fldparm == 'file_url') {
-            $fldName = "file_url";
-            $fileNameFld = "file_url";
-        } else {
-            throw new InvalidArgumentException("Incorrect field '" . $fldparm . "'"); // Incorrect field
-        }
-
-        // Set up key values
-        $ar = explode(Config("COMPOSITE_KEY_SEPARATOR"), $key);
-        if (count($ar) == 1) {
-            $this->letter_id->CurrentValue = $ar[0];
-        } else {
-            throw new InvalidArgumentException("Incorrect key '" . $key . "'"); // Incorrect key
-        }
-
-        // Set up filter (WHERE Clause)
-        $filter = $this->getRecordFilter();
-        $this->CurrentFilter = $filter;
-        $sql = $this->getCurrentSql();
-        $conn = $this->getConnection();
-        $dbtype = GetConnectionType($this->Dbid);
-        $response = ResponseFactory()->createResponse();
-        if ($row = $conn->fetchAssociative($sql)) {
-            $val = $row[$fldName];
-            if (!IsEmpty($val)) {
-                $fld = $this->Fields[$fldName];
-
-                // Binary data
-                if ($fld->DataType == DataType::BLOB) {
-                    if ($dbtype != "MYSQL") {
-                        if (is_resource($val) && get_resource_type($val) == "stream") { // Byte array
-                            $val = stream_get_contents($val);
-                        }
-                    }
-                    if ($resize) {
-                        ResizeBinary($val, $width, $height, plugins: $plugins);
-                    }
-
-                    // Write file type
-                    if ($fileTypeFld != "" && !IsEmpty($row[$fileTypeFld])) {
-                        $response = $response->withHeader("Content-type", $row[$fileTypeFld]);
-                    } else {
-                        $response = $response->withHeader("Content-type", ContentType($val));
-                    }
-
-                    // Write file name
-                    $downloadPdf = !Config("EMBED_PDF") && Config("DOWNLOAD_PDF_FILE");
-                    if ($fileNameFld != "" && !IsEmpty($row[$fileNameFld])) {
-                        $fileName = $row[$fileNameFld];
-                        $pathinfo = pathinfo($fileName);
-                        $ext = strtolower($pathinfo["extension"] ?? "");
-                        $isPdf = SameText($ext, "pdf");
-                        if ($downloadPdf || !$isPdf) { // Skip header if not download PDF
-                            $response = $response->withHeader("Content-Disposition", "attachment; filename=\"" . $fileName . "\"");
-                        }
-                    } else {
-                        $ext = ContentExtension($val);
-                        $isPdf = SameText($ext, ".pdf");
-                        if ($isPdf && $downloadPdf) { // Add header if download PDF
-                            $response = $response->withHeader("Content-Disposition", "attachment" . ($DownloadFileName ? "; filename=\"" . $DownloadFileName . "\"" : ""));
-                        }
-                    }
-
-                    // Write file data
-                    if (
-                        StartsString("PK", $val)
-                        && ContainsString($val, "[Content_Types].xml")
-                        && ContainsString($val, "_rels")
-                        && ContainsString($val, "docProps")
-                    ) { // Fix Office 2007 documents
-                        if (!EndsString("\0\0\0", $val)) { // Not ends with 3 or 4 \0
-                            $val .= "\0\0\0\0";
-                        }
-                    }
-
-                    // Clear any debug message
-                    if (ob_get_length()) {
-                        ob_end_clean();
-                    }
-
-                    // Write binary data
-                    $response = $response->write($val);
-
-                // Upload to folder
-                } else {
-                    if ($fld->UploadMultiple) {
-                        $files = explode(Config("MULTIPLE_UPLOAD_SEPARATOR"), $val);
-                    } else {
-                        $files = [$val];
-                    }
-                    $data = [];
-                    $ar = [];
-                    if ($fld->hasMethod("getUploadPath")) { // Check field level upload path
-                        $fld->UploadPath = $fld->getUploadPath();
-                    }
-                    foreach ($files as $file) {
-                        if (!IsEmpty($file)) {
-                            if (Config("ENCRYPT_FILE_PATH")) {
-                                $ar[$file] = FullUrl(GetApiUrl(Config("API_FILE_ACTION") .
-                                    "/" . $this->TableVar . "/" . Encrypt($fld->uploadPath() . $file)));
-                            } else {
-                                $ar[$file] = FullUrl($fld->hrefPath() . $file);
-                            }
-                        }
-                    }
-                    $data[$fld->Param] = $ar;
-                    $response = $response->withJson($data);
-                }
-            }
-        }
+        // No binary fields
         return $response;
     }
 

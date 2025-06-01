@@ -1,3 +1,0 @@
-1748772957
-lookup.cache.letters.7795f3f730836f0e8fbbc105716e49c3
-a:1:{s:223:"query=SELECT `letter_id` AS `lf`, `nomor_surat` AS `df`, `perihal` AS `df2`, '' AS `df3`, '' AS `df4` FROM letters&params=a:0:{}&types=a:0:{}&connectionParams=a9e7505489fca649b67838058aa3f1cadf916b7426e12caae87b33ac891fbd04";O:31:"Doctrine\DBAL\Cache\ArrayResult":2:{i:0;a:5:{i:0;s:2:"lf";i:1;s:2:"df";i:2;s:3:"df2";i:3;s:3:"df3";i:4;s:3:"df4";}i:1;a:1:{i:0;a:5:{i:0;i:2;i:1;s:4:"5453";i:2;s:8:"fdfsdfsd";i:3;s:0:"";i:4;s:0:"";}}}}

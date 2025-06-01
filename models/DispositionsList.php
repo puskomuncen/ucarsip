@@ -1380,7 +1380,7 @@ class DispositionsList extends Dispositions
         $item->ShowInButtonGroup = false;
 
         // Drop down button for ListOptions
-        $this->ListOptions->UseDropDownButton = false;
+        $this->ListOptions->UseDropDownButton = true;
         $this->ListOptions->DropDownButtonPhrase = $this->language->phrase("ButtonListOptions");
         $this->ListOptions->UseButtonGroup = true;
         if ($this->ListOptions->UseButtonGroup && IsMobile()) {
@@ -1555,7 +1555,7 @@ class DispositionsList extends Dispositions
         // Set up options default
         foreach ($options as $name => $option) {
             if ($name != "column") { // Always use dropdown for column
-                $option->UseDropDownButton = false;
+                $option->UseDropDownButton = true;
                 $option->UseButtonGroup = true;
             }
             //$option->ButtonClass = ""; // Class for button group

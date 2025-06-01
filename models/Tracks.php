@@ -152,29 +152,14 @@ class Tracks extends DbTable implements LookupTableInterface
             false, // Force selection
             false, // Is Virtual search
             'FORMATTED TEXT', // View Tag
-            'SELECT' // Edit Tag
+            'TEXT' // Edit Tag
         );
         $this->letter_id->InputTextType = "text";
         $this->letter_id->Raw = true;
         $this->letter_id->Nullable = false; // NOT NULL field
         $this->letter_id->Required = true; // Required field
-        $this->letter_id->setSelectMultiple(false); // Select one
-        $this->letter_id->UsePleaseSelect = true; // Use PleaseSelect by default
-        $this->letter_id->PleaseSelectText = $this->language->phrase("PleaseSelect"); // "PleaseSelect" text
-        global $CurrentLanguage;
-        switch ($CurrentLanguage) {
-            case "en-US":
-                $this->letter_id->Lookup = new Lookup($this->letter_id, 'letters', false, 'letter_id', ["letter_id","perihal","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`letter_id`, ''),'" . ValueSeparator(1, $this->letter_id) . "',COALESCE(`perihal`,''))");
-                break;
-            case "id-ID":
-                $this->letter_id->Lookup = new Lookup($this->letter_id, 'letters', false, 'letter_id', ["letter_id","perihal","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`letter_id`, ''),'" . ValueSeparator(1, $this->letter_id) . "',COALESCE(`perihal`,''))");
-                break;
-            default:
-                $this->letter_id->Lookup = new Lookup($this->letter_id, 'letters', false, 'letter_id', ["letter_id","perihal","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`letter_id`, ''),'" . ValueSeparator(1, $this->letter_id) . "',COALESCE(`perihal`,''))");
-                break;
-        }
         $this->letter_id->DefaultErrorMessage = $this->language->phrase("IncorrectInteger");
-        $this->letter_id->SearchOperators = ["=", "<>", "<", "<=", ">", ">=", "BETWEEN", "NOT BETWEEN"];
+        $this->letter_id->SearchOperators = ["=", "<>", "IN", "NOT IN", "<", "<=", ">", ">=", "BETWEEN", "NOT BETWEEN"];
         $this->Fields['letter_id'] = &$this->letter_id;
 
         // user_id
@@ -228,9 +213,6 @@ class Tracks extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
-                $this->_action->Lookup = new Lookup($this->_action, 'tracks', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
-                break;
-            case "id-ID":
                 $this->_action->Lookup = new Lookup($this->_action, 'tracks', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
             default:
@@ -1242,28 +1224,8 @@ class Tracks extends DbTable implements LookupTableInterface
         $this->track_id->ViewValue = $this->track_id->CurrentValue;
 
         // letter_id
-        $curVal = strval($this->letter_id->CurrentValue);
-        if ($curVal != "") {
-            $this->letter_id->ViewValue = $this->letter_id->lookupCacheOption($curVal);
-            if ($this->letter_id->ViewValue === null) { // Lookup from database
-                $filterWrk = SearchFilter($this->letter_id->Lookup->getTable()->Fields["letter_id"]->searchExpression(), "=", $curVal, $this->letter_id->Lookup->getTable()->Fields["letter_id"]->searchDataType(), "DB");
-                $sqlWrk = $this->letter_id->Lookup->getSql(false, $filterWrk, '', $this, true, true);
-                $conn = Conn();
-                $rswrk = $conn->executeQuery($sqlWrk)->fetchAllAssociative();
-                $ari = count($rswrk);
-                if ($ari > 0) { // Lookup values found
-                    $rows = [];
-                    foreach ($rswrk as $row) {
-                        $rows[] = $this->letter_id->Lookup->renderViewRow($row);
-                    }
-                    $this->letter_id->ViewValue = $this->letter_id->displayValue($rows[0]);
-                } else {
-                    $this->letter_id->ViewValue = FormatNumber($this->letter_id->CurrentValue, $this->letter_id->formatPattern());
-                }
-            }
-        } else {
-            $this->letter_id->ViewValue = null;
-        }
+        $this->letter_id->ViewValue = $this->letter_id->CurrentValue;
+        $this->letter_id->ViewValue = FormatNumber($this->letter_id->ViewValue, $this->letter_id->formatPattern());
 
         // user_id
         $this->user_id->ViewValue = $this->user_id->CurrentValue;

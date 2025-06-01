@@ -158,7 +158,7 @@ class UnitsList extends Units
         $this->unit_id->setVisibility();
         $this->nama_unit->setVisibility();
         $this->kode_unit->setVisibility();
-        $this->created_at->Visible = false;
+        $this->created_at->setVisibility();
     }
 
     // Constructor
@@ -443,9 +443,6 @@ class UnitsList extends Units
     {
         if ($this->isAdd() || $this->isCopy() || $this->isGridAdd()) {
             $this->unit_id->Visible = false;
-        }
-        if ($this->isAddOrEdit()) {
-            $this->created_at->Visible = false;
         }
     }
 
@@ -1250,6 +1247,7 @@ class UnitsList extends Units
             $this->updateSort($this->unit_id); // unit_id
             $this->updateSort($this->nama_unit); // nama_unit
             $this->updateSort($this->kode_unit); // kode_unit
+            $this->updateSort($this->created_at); // created_at
             $this->setStartRecordNumber(1); // Reset start position
         }
 
@@ -1339,7 +1337,7 @@ class UnitsList extends Units
         $item->ShowInButtonGroup = false;
 
         // Drop down button for ListOptions
-        $this->ListOptions->UseDropDownButton = false;
+        $this->ListOptions->UseDropDownButton = true;
         $this->ListOptions->DropDownButtonPhrase = $this->language->phrase("ButtonListOptions");
         $this->ListOptions->UseButtonGroup = true;
         if ($this->ListOptions->UseButtonGroup && IsMobile()) {
@@ -1501,6 +1499,7 @@ class UnitsList extends Units
             $this->createColumnOption($option, "unit_id");
             $this->createColumnOption($option, "nama_unit");
             $this->createColumnOption($option, "kode_unit");
+            $this->createColumnOption($option, "created_at");
         }
 
         // Set up custom actions
@@ -1511,7 +1510,7 @@ class UnitsList extends Units
         // Set up options default
         foreach ($options as $name => $option) {
             if ($name != "column") { // Always use dropdown for column
-                $option->UseDropDownButton = false;
+                $option->UseDropDownButton = true;
                 $option->UseButtonGroup = true;
             }
             //$option->ButtonClass = ""; // Class for button group
@@ -2020,6 +2019,10 @@ class UnitsList extends Units
             // kode_unit
             $this->kode_unit->HrefValue = "";
             $this->kode_unit->TooltipValue = "";
+
+            // created_at
+            $this->created_at->HrefValue = "";
+            $this->created_at->TooltipValue = "";
         }
 
         // Call Row Rendered event

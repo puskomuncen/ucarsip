@@ -517,7 +517,6 @@ class LettersAdd extends Letters
         // Set up lookup cache
         $this->setupLookupOptions($this->jenis);
         $this->setupLookupOptions($this->klasifikasi);
-        $this->setupLookupOptions($this->penerima_unit_id);
         $this->setupLookupOptions($this->status);
 
         // Load default values for add
@@ -663,9 +662,6 @@ class LettersAdd extends Letters
 // Get upload files
     protected function getUploadFiles(): void
     {
-        $this->file_url->Upload->Index = $this->FormIndex;
-        $this->file_url->Upload->uploadFile();
-        $this->file_url->CurrentValue = $this->file_url->Upload->FileName;
     }
 
     // Load default values
@@ -756,7 +752,17 @@ class LettersAdd extends Letters
             if (IsApi() && $val === null) {
                 $this->penerima_unit_id->Visible = false; // Disable update for API request
             } else {
-                $this->penerima_unit_id->setFormValue($val);
+                $this->penerima_unit_id->setFormValue($val, true, $validate);
+            }
+        }
+
+        // Check field name 'file_url' before field var 'x_file_url'
+        $val = $this->getFormValue("file_url", null) ?? $this->getFormValue("x_file_url", null);
+        if (!$this->file_url->IsDetailKey) {
+            if (IsApi() && $val === null) {
+                $this->file_url->Visible = false; // Disable update for API request
+            } else {
+                $this->file_url->setFormValue($val);
             }
         }
 
@@ -804,7 +810,6 @@ class LettersAdd extends Letters
 
         // Check field name 'letter_id' first before field var 'x_letter_id'
         $val = $this->hasFormValue("letter_id") ? $this->getFormValue("letter_id") : $this->getFormValue("x_letter_id");
-        $this->getUploadFiles(); // Get upload files
     }
 
     // Restore form values
@@ -820,6 +825,7 @@ class LettersAdd extends Letters
         $this->klasifikasi->CurrentValue = $this->klasifikasi->FormValue;
         $this->pengirim->CurrentValue = $this->pengirim->FormValue;
         $this->penerima_unit_id->CurrentValue = $this->penerima_unit_id->FormValue;
+        $this->file_url->CurrentValue = $this->file_url->FormValue;
         $this->status->CurrentValue = $this->status->FormValue;
         $this->created_by->CurrentValue = $this->created_by->FormValue;
         $this->created_at->CurrentValue = $this->created_at->FormValue;
@@ -874,8 +880,7 @@ class LettersAdd extends Letters
         $this->klasifikasi->setDbValue($row['klasifikasi']);
         $this->pengirim->setDbValue($row['pengirim']);
         $this->penerima_unit_id->setDbValue($row['penerima_unit_id']);
-        $this->file_url->Upload->DbValue = $row['file_url'];
-        $this->file_url->setDbValue($this->file_url->Upload->DbValue);
+        $this->file_url->setDbValue($row['file_url']);
         $this->status->setDbValue($row['status']);
         $this->created_by->setDbValue($row['created_by']);
         $this->created_at->setDbValue($row['created_at']);
@@ -1013,35 +1018,11 @@ class LettersAdd extends Letters
             $this->pengirim->ViewValue = $this->pengirim->CurrentValue;
 
             // penerima_unit_id
-            $curVal = strval($this->penerima_unit_id->CurrentValue);
-            if ($curVal != "") {
-                $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->lookupCacheOption($curVal);
-                if ($this->penerima_unit_id->ViewValue === null) { // Lookup from database
-                    $filterWrk = SearchFilter($this->penerima_unit_id->Lookup->getTable()->Fields["unit_id"]->searchExpression(), "=", $curVal, $this->penerima_unit_id->Lookup->getTable()->Fields["unit_id"]->searchDataType(), "DB");
-                    $sqlWrk = $this->penerima_unit_id->Lookup->getSql(false, $filterWrk, '', $this, true, true);
-                    $conn = Conn();
-                    $rswrk = $conn->executeQuery($sqlWrk)->fetchAllAssociative();
-                    $ari = count($rswrk);
-                    if ($ari > 0) { // Lookup values found
-                        $rows = [];
-                        foreach ($rswrk as $row) {
-                            $rows[] = $this->penerima_unit_id->Lookup->renderViewRow($row);
-                        }
-                        $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->displayValue($rows[0]);
-                    } else {
-                        $this->penerima_unit_id->ViewValue = FormatNumber($this->penerima_unit_id->CurrentValue, $this->penerima_unit_id->formatPattern());
-                    }
-                }
-            } else {
-                $this->penerima_unit_id->ViewValue = null;
-            }
+            $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->CurrentValue;
+            $this->penerima_unit_id->ViewValue = FormatNumber($this->penerima_unit_id->ViewValue, $this->penerima_unit_id->formatPattern());
 
             // file_url
-            if (!IsEmpty($this->file_url->Upload->DbValue)) {
-                $this->file_url->ViewValue = $this->file_url->Upload->DbValue;
-            } else {
-                $this->file_url->ViewValue = "";
-            }
+            $this->file_url->ViewValue = $this->file_url->CurrentValue;
 
             // status
             if (strval($this->status->CurrentValue) != "") {
@@ -1088,7 +1069,6 @@ class LettersAdd extends Letters
 
             // file_url
             $this->file_url->HrefValue = "";
-            $this->file_url->ExportHrefValue = $this->file_url->UploadPath . $this->file_url->Upload->DbValue;
 
             // status
             $this->status->HrefValue = "";
@@ -1137,52 +1117,16 @@ class LettersAdd extends Letters
 
             // penerima_unit_id
             $this->penerima_unit_id->setupEditAttributes();
-            $curVal = trim(strval($this->penerima_unit_id->CurrentValue));
-            if ($curVal != "") {
-                $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->lookupCacheOption($curVal);
-            } else {
-                $this->penerima_unit_id->ViewValue = $this->penerima_unit_id->Lookup !== null && is_array($this->penerima_unit_id->lookupOptions()) && count($this->penerima_unit_id->lookupOptions()) > 0 ? $curVal : null;
-            }
-            if ($this->penerima_unit_id->ViewValue !== null) { // Load from cache
-                $this->penerima_unit_id->EditValue = array_values($this->penerima_unit_id->lookupOptions());
-            } else { // Lookup from database
-                if ($curVal == "") {
-                    $filterWrk = "0=1";
-                } else {
-                    $filterWrk = SearchFilter($this->penerima_unit_id->Lookup->getTable()->Fields["unit_id"]->searchExpression(), "=", $this->penerima_unit_id->CurrentValue, $this->penerima_unit_id->Lookup->getTable()->Fields["unit_id"]->searchDataType(), "DB");
-                }
-                $sqlWrk = $this->penerima_unit_id->Lookup->getSql(true, $filterWrk, "", $this, false, true);
-                $conn = Conn();
-                $rswrk = $conn->executeQuery($sqlWrk)->fetchAllAssociative();
-                $ari = count($rswrk);
-                $rows = [];
-                if ($ari > 0) { // Lookup values found
-                    foreach ($rswrk as $row) {
-                        $rows[] = $this->penerima_unit_id->Lookup->renderViewRow($row);
-                    }
-                } else {
-                    $this->penerima_unit_id->ViewValue = $this->language->phrase("PleaseSelect");
-                }
-                $this->penerima_unit_id->EditValue = $rows;
-            }
+            $this->penerima_unit_id->EditValue = $this->penerima_unit_id->CurrentValue;
             $this->penerima_unit_id->PlaceHolder = RemoveHtml($this->penerima_unit_id->caption());
+            if (strval($this->penerima_unit_id->EditValue) != "" && is_numeric($this->penerima_unit_id->EditValue)) {
+                $this->penerima_unit_id->EditValue = FormatNumber($this->penerima_unit_id->EditValue, null);
+            }
 
             // file_url
             $this->file_url->setupEditAttributes();
-            if (!IsEmpty($this->file_url->Upload->DbValue)) {
-                $this->file_url->EditValue = $this->file_url->Upload->DbValue;
-            } else {
-                $this->file_url->EditValue = "";
-            }
-            if (!IsEmpty($this->file_url->CurrentValue)) {
-                $this->file_url->Upload->FileName = $this->file_url->CurrentValue;
-            }
-            if (!Config("CREATE_UPLOAD_FILE_ON_COPY")) {
-                $this->file_url->Upload->DbValue = null;
-            }
-            if ($this->isShow() || $this->isCopy()) {
-                $this->file_url->Upload->setupTempDirectory();
-            }
+            $this->file_url->EditValue = !$this->file_url->Raw ? HtmlDecode($this->file_url->CurrentValue) : $this->file_url->CurrentValue;
+            $this->file_url->PlaceHolder = RemoveHtml($this->file_url->caption());
 
             // status
             $this->status->EditValue = $this->status->options(false);
@@ -1222,7 +1166,6 @@ class LettersAdd extends Letters
 
             // file_url
             $this->file_url->HrefValue = "";
-            $this->file_url->ExportHrefValue = $this->file_url->UploadPath . $this->file_url->Upload->DbValue;
 
             // status
             $this->status->HrefValue = "";
@@ -1300,8 +1243,11 @@ class LettersAdd extends Letters
                     $this->penerima_unit_id->addErrorMessage(str_replace("%s", $this->penerima_unit_id->caption(), $this->penerima_unit_id->RequiredErrorMessage));
                 }
             }
+            if (!CheckInteger($this->penerima_unit_id->FormValue)) {
+                $this->penerima_unit_id->addErrorMessage($this->penerima_unit_id->getErrorMessage(false));
+            }
             if ($this->file_url->Visible && $this->file_url->Required) {
-                if ($this->file_url->Upload->FileName == "" && !$this->file_url->Upload->KeepFile) {
+                if (!$this->file_url->IsDetailKey && IsEmpty($this->file_url->FormValue)) {
                     $this->file_url->addErrorMessage(str_replace("%s", $this->file_url->caption(), $this->file_url->RequiredErrorMessage));
                 }
             }
@@ -1343,13 +1289,6 @@ class LettersAdd extends Letters
     {
         // Get new row
         $newRow = $this->getAddRow();
-        if ($this->file_url->Visible && !$this->file_url->Upload->KeepFile) {
-            if (!IsEmpty($this->file_url->Upload->FileName)) {
-                $this->file_url->Upload->DbValue = null;
-                FixUploadFileNames($this->file_url);
-                $this->file_url->setDbValueDef($newRow, $this->file_url->Upload->FileName, false);
-            }
-        }
 
         // Update current values
         $this->Fields->setCurrentValues($newRow);
@@ -1372,13 +1311,6 @@ class LettersAdd extends Letters
         if ($insertRow) {
             $addRow = $this->insert($newRow);
             if ($addRow) {
-                if ($this->file_url->Visible && !$this->file_url->Upload->KeepFile) {
-                    $this->file_url->Upload->DbValue = null;
-                    if (!SaveUploadFiles($this->file_url, $newRow['file_url'], false)) {
-                        $this->setFailureMessage($this->language->phrase("UploadError7"));
-                        return false;
-                    }
-                }
             } elseif (!IsEmpty($this->DbErrorMessage)) { // Show database error
                 $this->setFailureMessage($this->DbErrorMessage);
             }
@@ -1441,14 +1373,7 @@ class LettersAdd extends Letters
         $this->penerima_unit_id->setDbValueDef($newRow, $this->penerima_unit_id->CurrentValue, false);
 
         // file_url
-        if ($this->file_url->Visible && !$this->file_url->Upload->KeepFile) {
-            if ($this->file_url->Upload->FileName == "") {
-                $newRow['file_url'] = null;
-            } else {
-                FixUploadTempFileNames($this->file_url);
-                $newRow['file_url'] = $this->file_url->Upload->FileName;
-            }
-        }
+        $this->file_url->setDbValueDef($newRow, $this->file_url->CurrentValue, false);
 
         // status
         $this->status->setDbValueDef($newRow, $this->status->CurrentValue, false);
@@ -1493,8 +1418,6 @@ class LettersAdd extends Letters
                 case "x_jenis":
                     break;
                 case "x_klasifikasi":
-                    break;
-                case "x_penerima_unit_id":
                     break;
                 case "x_status":
                     break;

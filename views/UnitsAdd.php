@@ -24,7 +24,7 @@ loadjs.ready(["wrapper", "head"], function () {
         .setFields([
             ["nama_unit", [fields.nama_unit.visible && fields.nama_unit.required ? ew.Validators.required(fields.nama_unit.caption) : null], fields.nama_unit.isInvalid],
             ["kode_unit", [fields.kode_unit.visible && fields.kode_unit.required ? ew.Validators.required(fields.kode_unit.caption) : null], fields.kode_unit.isInvalid],
-            ["created_at", [fields.created_at.visible && fields.created_at.required ? ew.Validators.required(fields.created_at.caption) : null], fields.created_at.isInvalid]
+            ["created_at", [fields.created_at.visible && fields.created_at.required ? ew.Validators.required(fields.created_at.caption) : null, ew.Validators.datetime(fields.created_at.clientFormatPattern)], fields.created_at.isInvalid]
         ])
 
         // Form_CustomValidate
@@ -105,6 +105,61 @@ $Page->showMessage();
 <input type="<?= $Page->kode_unit->getInputTextType() ?>" name="x_kode_unit" id="x_kode_unit" data-table="units" data-field="x_kode_unit" value="<?= $Page->kode_unit->getEditValue() ?>" size="30" maxlength="20" placeholder="<?= HtmlEncode($Page->kode_unit->getPlaceHolder()) ?>" data-format-pattern="<?= HtmlEncode($Page->kode_unit->formatPattern()) ?>"<?= $Page->kode_unit->editAttributes() ?> aria-describedby="x_kode_unit_help">
 <?= $Page->kode_unit->getCustomMessage() ?>
 <div class="invalid-feedback"><?= $Page->kode_unit->getErrorMessage() ?></div>
+</span>
+</div></div>
+    </div>
+<?php } ?>
+<?php if ($Page->created_at->Visible) { // created_at ?>
+    <div id="r_created_at"<?= $Page->created_at->rowAttributes() ?>>
+        <label id="elh_units_created_at" for="x_created_at" class="<?= $Page->LeftColumnClass ?>"><?= $Page->created_at->caption() ?><?= $Page->created_at->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+        <div class="<?= $Page->RightColumnClass ?>"><div<?= $Page->created_at->cellAttributes() ?>>
+<span id="el_units_created_at">
+<input type="<?= $Page->created_at->getInputTextType() ?>" name="x_created_at" id="x_created_at" data-table="units" data-field="x_created_at" value="<?= $Page->created_at->getEditValue() ?>" placeholder="<?= HtmlEncode($Page->created_at->getPlaceHolder()) ?>" data-format-pattern="<?= HtmlEncode($Page->created_at->formatPattern()) ?>"<?= $Page->created_at->editAttributes() ?> aria-describedby="x_created_at_help">
+<?= $Page->created_at->getCustomMessage() ?>
+<div class="invalid-feedback"><?= $Page->created_at->getErrorMessage() ?></div>
+<?php if (!$Page->created_at->ReadOnly && !$Page->created_at->Disabled && !isset($Page->created_at->EditAttrs["readonly"]) && !isset($Page->created_at->EditAttrs["disabled"])) { ?>
+<script<?= Nonce() ?>>
+loadjs.ready(["funitsadd", "datetimepicker"], function () {
+    let format = "<?= DateFormat(0) ?>",
+        options = {
+            localization: {
+                locale: ew.LANGUAGE_ID + "-u-nu-" + ew.getNumberingSystem(),
+                hourCycle: format.match(/H/) ? "h24" : "h12",
+                format,
+                ...ew.language.phrase("datetimepicker")
+            },
+            display: {
+                icons: {
+                    previous: ew.IS_RTL ? "fa-solid fa-chevron-right" : "fa-solid fa-chevron-left",
+                    next: ew.IS_RTL ? "fa-solid fa-chevron-left" : "fa-solid fa-chevron-right"
+                },
+                components: {
+                    clock: !!format.match(/h/i) || !!format.match(/m/) || !!format.match(/s/i),
+                    hours: !!format.match(/h/i),
+                    minutes: !!format.match(/m/),
+                    seconds: !!format.match(/s/i)
+                },
+                theme: ew.getPreferredTheme()
+            }
+        };
+    ew.createDateTimePicker(
+        "funitsadd",
+        "x_created_at",
+        ew.deepAssign({"useCurrent":false,"display":{"sideBySide":false}}, options),
+        {"inputGroup":true}
+    );
+});
+</script>
+<?php } ?>
+<script<?= Nonce() ?>>
+loadjs.ready(['funitsadd', 'jqueryinputmask'], function() {
+	options = {
+		'jitMasking': false,
+		'removeMaskOnSubmit': true
+	};
+	ew.createjQueryInputMask("funitsadd", "x_created_at", jQuery.extend(true, "", options));
+});
+</script>
 </span>
 </div></div>
     </div>

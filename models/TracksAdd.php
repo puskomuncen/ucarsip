@@ -507,7 +507,6 @@ class TracksAdd extends Tracks
 		// End of Compare Root URL by Masino Sinaga, September 10, 2023
 
         // Set up lookup cache
-        $this->setupLookupOptions($this->letter_id);
         $this->setupLookupOptions($this->_action);
 
         // Load default values for add
@@ -671,7 +670,7 @@ class TracksAdd extends Tracks
             if (IsApi() && $val === null) {
                 $this->letter_id->Visible = false; // Disable update for API request
             } else {
-                $this->letter_id->setFormValue($val);
+                $this->letter_id->setFormValue($val, true, $validate);
             }
         }
 
@@ -844,28 +843,8 @@ class TracksAdd extends Tracks
             $this->track_id->ViewValue = $this->track_id->CurrentValue;
 
             // letter_id
-            $curVal = strval($this->letter_id->CurrentValue);
-            if ($curVal != "") {
-                $this->letter_id->ViewValue = $this->letter_id->lookupCacheOption($curVal);
-                if ($this->letter_id->ViewValue === null) { // Lookup from database
-                    $filterWrk = SearchFilter($this->letter_id->Lookup->getTable()->Fields["letter_id"]->searchExpression(), "=", $curVal, $this->letter_id->Lookup->getTable()->Fields["letter_id"]->searchDataType(), "DB");
-                    $sqlWrk = $this->letter_id->Lookup->getSql(false, $filterWrk, '', $this, true, true);
-                    $conn = Conn();
-                    $rswrk = $conn->executeQuery($sqlWrk)->fetchAllAssociative();
-                    $ari = count($rswrk);
-                    if ($ari > 0) { // Lookup values found
-                        $rows = [];
-                        foreach ($rswrk as $row) {
-                            $rows[] = $this->letter_id->Lookup->renderViewRow($row);
-                        }
-                        $this->letter_id->ViewValue = $this->letter_id->displayValue($rows[0]);
-                    } else {
-                        $this->letter_id->ViewValue = FormatNumber($this->letter_id->CurrentValue, $this->letter_id->formatPattern());
-                    }
-                }
-            } else {
-                $this->letter_id->ViewValue = null;
-            }
+            $this->letter_id->ViewValue = $this->letter_id->CurrentValue;
+            $this->letter_id->ViewValue = FormatNumber($this->letter_id->ViewValue, $this->letter_id->formatPattern());
 
             // user_id
             $this->user_id->ViewValue = $this->user_id->CurrentValue;
@@ -902,35 +881,11 @@ class TracksAdd extends Tracks
         } elseif ($this->RowType == RowType::ADD) {
             // letter_id
             $this->letter_id->setupEditAttributes();
-            $curVal = trim(strval($this->letter_id->CurrentValue));
-            if ($curVal != "") {
-                $this->letter_id->ViewValue = $this->letter_id->lookupCacheOption($curVal);
-            } else {
-                $this->letter_id->ViewValue = $this->letter_id->Lookup !== null && is_array($this->letter_id->lookupOptions()) && count($this->letter_id->lookupOptions()) > 0 ? $curVal : null;
-            }
-            if ($this->letter_id->ViewValue !== null) { // Load from cache
-                $this->letter_id->EditValue = array_values($this->letter_id->lookupOptions());
-            } else { // Lookup from database
-                if ($curVal == "") {
-                    $filterWrk = "0=1";
-                } else {
-                    $filterWrk = SearchFilter($this->letter_id->Lookup->getTable()->Fields["letter_id"]->searchExpression(), "=", $this->letter_id->CurrentValue, $this->letter_id->Lookup->getTable()->Fields["letter_id"]->searchDataType(), "DB");
-                }
-                $sqlWrk = $this->letter_id->Lookup->getSql(true, $filterWrk, "", $this, false, true);
-                $conn = Conn();
-                $rswrk = $conn->executeQuery($sqlWrk)->fetchAllAssociative();
-                $ari = count($rswrk);
-                $rows = [];
-                if ($ari > 0) { // Lookup values found
-                    foreach ($rswrk as $row) {
-                        $rows[] = $this->letter_id->Lookup->renderViewRow($row);
-                    }
-                } else {
-                    $this->letter_id->ViewValue = $this->language->phrase("PleaseSelect");
-                }
-                $this->letter_id->EditValue = $rows;
-            }
+            $this->letter_id->EditValue = $this->letter_id->CurrentValue;
             $this->letter_id->PlaceHolder = RemoveHtml($this->letter_id->caption());
+            if (strval($this->letter_id->EditValue) != "" && is_numeric($this->letter_id->EditValue)) {
+                $this->letter_id->EditValue = FormatNumber($this->letter_id->EditValue, null);
+            }
 
             // user_id
             $this->user_id->setupEditAttributes();
@@ -993,6 +948,9 @@ class TracksAdd extends Tracks
                 if (!$this->letter_id->IsDetailKey && IsEmpty($this->letter_id->FormValue)) {
                     $this->letter_id->addErrorMessage(str_replace("%s", $this->letter_id->caption(), $this->letter_id->RequiredErrorMessage));
                 }
+            }
+            if (!CheckInteger($this->letter_id->FormValue)) {
+                $this->letter_id->addErrorMessage($this->letter_id->getErrorMessage(false));
             }
             if ($this->user_id->Visible && $this->user_id->Required) {
                 if (!$this->user_id->IsDetailKey && IsEmpty($this->user_id->FormValue)) {
@@ -1128,8 +1086,6 @@ class TracksAdd extends Tracks
 
             // Set up lookup SQL and connection
             switch ($fld->FieldVar) {
-                case "x_letter_id":
-                    break;
                 case "x__action":
                     break;
                 default:

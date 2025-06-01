@@ -11,8 +11,8 @@ $Page->showMessage();
 <div class="panel panel-default">
   <div class="panel-heading">Home</div>
   <div class="panel-body">
-	<h2 class="text-center">Sistem Informasi Arsip Elektronik Uncen 2025</h2>
-	   <p class="text-center">Aplikasi ini dibuat untuk data Arsip di Universitas Cenderawasih</strong></a>
+	<h2 class="text-center">Sistem Informasi Gudang Uncen 2025</h2>
+	   <p class="text-center">Aplikasi ini dibuat untuk data Gudang di Universitas Cenderawasih</strong></a>
 
   </div>
   

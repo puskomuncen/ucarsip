@@ -183,6 +183,9 @@ $Page->ListOptions->render("header", "left");
 <?php if ($Page->kode_unit->Visible) { // kode_unit ?>
         <th data-name="kode_unit" class="<?= $Page->kode_unit->headerCellClass() ?>"><div id="elh_units_kode_unit" class="units_kode_unit"><?= $Page->renderFieldHeader($Page->kode_unit) ?></div></th>
 <?php } ?>
+<?php if ($Page->created_at->Visible) { // created_at ?>
+        <th data-name="created_at" class="<?= $Page->created_at->headerCellClass() ?>"><div id="elh_units_created_at" class="units_created_at"><?= $Page->renderFieldHeader($Page->created_at) ?></div></th>
+<?php } ?>
 <?php
 // Render list options (header, right)
 $Page->ListOptions->render("header", "right");
@@ -235,6 +238,14 @@ $Page->ListOptions->render("body", "left", $Page->RowCount);
 </span>
 </td>
     <?php } ?>
+    <?php if ($Page->created_at->Visible) { // created_at ?>
+        <td data-name="created_at"<?= $Page->created_at->cellAttributes() ?>>
+<span id="el<?= $Page->RowIndex == '$rowindex$' ? '$rowindex$' : $Page->RowCount ?>_units_created_at" class="el_units_created_at">
+<span<?= $Page->created_at->viewAttributes() ?>>
+<?= $Page->created_at->getViewValue() ?></span>
+</span>
+</td>
+    <?php } ?>
 <?php
 // Render list options (body, right)
 $Page->ListOptions->render("body", "right", $Page->RowCount);
@@ -280,6 +291,9 @@ $Page->ListOptions->render("header", "left");
 <?php if ($Page->kode_unit->Visible) { // kode_unit ?>
         <th data-name="kode_unit" class="<?= $Page->kode_unit->headerCellClass() ?>"><div id="elh_units_kode_unit" class="units_kode_unit"><?= $Page->renderFieldHeader($Page->kode_unit) ?></div></th>
 <?php } ?>
+<?php if ($Page->created_at->Visible) { // created_at ?>
+        <th data-name="created_at" class="<?= $Page->created_at->headerCellClass() ?>"><div id="elh_units_created_at" class="units_created_at"><?= $Page->renderFieldHeader($Page->created_at) ?></div></th>
+<?php } ?>
 <?php
 // Render list options (header, right)
 $Page->ListOptions->render("header", "right");
@@ -313,6 +327,14 @@ $Page->ListOptions->render("body", "left", $Page->RowCount);
 <span id="el<?= $Page->RowIndex == '$rowindex$' ? '$rowindex$' : $Page->RowCount ?>_units_kode_unit" class="el_units_kode_unit">
 <span<?= $Page->kode_unit->viewAttributes() ?>>
 <?= $Page->kode_unit->getViewValue() ?></span>
+</span>
+</td>
+    <?php } ?>
+    <?php if ($Page->created_at->Visible) { // created_at ?>
+        <td data-name="created_at"<?= $Page->created_at->cellAttributes() ?>>
+<span id="el<?= $Page->RowIndex == '$rowindex$' ? '$rowindex$' : $Page->RowCount ?>_units_created_at" class="el_units_created_at">
+<span<?= $Page->created_at->viewAttributes() ?>>
+<?= $Page->created_at->getViewValue() ?></span>
 </span>
 </td>
     <?php } ?>
@@ -394,6 +416,9 @@ $Page->ListOptions->render("header", "left");
 <?php if ($Page->kode_unit->Visible) { // kode_unit ?>
         <th data-name="kode_unit" class="<?= $Page->kode_unit->headerCellClass() ?>"><div id="elh_units_kode_unit" class="units_kode_unit"><?= $Page->renderFieldHeader($Page->kode_unit) ?></div></th>
 <?php } ?>
+<?php if ($Page->created_at->Visible) { // created_at ?>
+        <th data-name="created_at" class="<?= $Page->created_at->headerCellClass() ?>"><div id="elh_units_created_at" class="units_created_at"><?= $Page->renderFieldHeader($Page->created_at) ?></div></th>
+<?php } ?>
 <?php
 // Render list options (header, right)
 $Page->ListOptions->render("header", "right");
@@ -446,6 +471,14 @@ $Page->ListOptions->render("body", "left", $Page->RowCount);
 </span>
 </td>
     <?php } ?>
+    <?php if ($Page->created_at->Visible) { // created_at ?>
+        <td data-name="created_at"<?= $Page->created_at->cellAttributes() ?>>
+<span id="el<?= $Page->RowIndex == '$rowindex$' ? '$rowindex$' : $Page->RowCount ?>_units_created_at" class="el_units_created_at">
+<span<?= $Page->created_at->viewAttributes() ?>>
+<?= $Page->created_at->getViewValue() ?></span>
+</span>
+</td>
+    <?php } ?>
 <?php
 // Render list options (body, right)
 $Page->ListOptions->render("body", "right", $Page->RowCount);
@@ -491,6 +524,9 @@ $Page->ListOptions->render("header", "left");
 <?php if ($Page->kode_unit->Visible) { // kode_unit ?>
         <th data-name="kode_unit" class="<?= $Page->kode_unit->headerCellClass() ?>"><div id="elh_units_kode_unit" class="units_kode_unit"><?= $Page->renderFieldHeader($Page->kode_unit) ?></div></th>
 <?php } ?>
+<?php if ($Page->created_at->Visible) { // created_at ?>
+        <th data-name="created_at" class="<?= $Page->created_at->headerCellClass() ?>"><div id="elh_units_created_at" class="units_created_at"><?= $Page->renderFieldHeader($Page->created_at) ?></div></th>
+<?php } ?>
 <?php
 // Render list options (header, right)
 $Page->ListOptions->render("header", "right");
@@ -524,6 +560,14 @@ $Page->ListOptions->render("body", "left", $Page->RowCount);
 <span id="el<?= $Page->RowIndex == '$rowindex$' ? '$rowindex$' : $Page->RowCount ?>_units_kode_unit" class="el_units_kode_unit">
 <span<?= $Page->kode_unit->viewAttributes() ?>>
 <?= $Page->kode_unit->getViewValue() ?></span>
+</span>
+</td>
+    <?php } ?>
+    <?php if ($Page->created_at->Visible) { // created_at ?>
+        <td data-name="created_at"<?= $Page->created_at->cellAttributes() ?>>
+<span id="el<?= $Page->RowIndex == '$rowindex$' ? '$rowindex$' : $Page->RowCount ?>_units_created_at" class="el_units_created_at">
+<span<?= $Page->created_at->viewAttributes() ?>>
+<?= $Page->created_at->getViewValue() ?></span>
 </span>
 </td>
     <?php } ?>

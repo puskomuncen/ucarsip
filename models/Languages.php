@@ -195,9 +195,6 @@ class Languages extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->Default->Lookup = new Lookup($this->Default, 'languages', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
-            case "id-ID":
-                $this->Default->Lookup = new Lookup($this->Default, 'languages', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
-                break;
             default:
                 $this->Default->Lookup = new Lookup($this->Default, 'languages', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;

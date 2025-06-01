@@ -167,9 +167,6 @@ class Dispositions extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->letter_id->Lookup = new Lookup($this->letter_id, 'letters', false, 'letter_id', ["nomor_surat","perihal","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`nomor_surat`, ''),'" . ValueSeparator(1, $this->letter_id) . "',COALESCE(`perihal`,''))");
                 break;
-            case "id-ID":
-                $this->letter_id->Lookup = new Lookup($this->letter_id, 'letters', false, 'letter_id', ["nomor_surat","perihal","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`nomor_surat`, ''),'" . ValueSeparator(1, $this->letter_id) . "',COALESCE(`perihal`,''))");
-                break;
             default:
                 $this->letter_id->Lookup = new Lookup($this->letter_id, 'letters', false, 'letter_id', ["nomor_surat","perihal","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`nomor_surat`, ''),'" . ValueSeparator(1, $this->letter_id) . "',COALESCE(`perihal`,''))");
                 break;
@@ -205,9 +202,6 @@ class Dispositions extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->dari_unit_id->Lookup = new Lookup($this->dari_unit_id, 'units', false, 'unit_id', ["nama_unit","","",""], '', "", [], [], [], [], [], [], false, '', '', "`nama_unit`");
                 break;
-            case "id-ID":
-                $this->dari_unit_id->Lookup = new Lookup($this->dari_unit_id, 'units', false, 'unit_id', ["nama_unit","","",""], '', "", [], [], [], [], [], [], false, '', '', "`nama_unit`");
-                break;
             default:
                 $this->dari_unit_id->Lookup = new Lookup($this->dari_unit_id, 'units', false, 'unit_id', ["nama_unit","","",""], '', "", [], [], [], [], [], [], false, '', '', "`nama_unit`");
                 break;
@@ -241,9 +235,6 @@ class Dispositions extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
-                $this->ke_unit_id->Lookup = new Lookup($this->ke_unit_id, 'units', false, 'unit_id', ["nama_unit","","",""], '', "", [], [], [], [], [], [], false, '', '', "`nama_unit`");
-                break;
-            case "id-ID":
                 $this->ke_unit_id->Lookup = new Lookup($this->ke_unit_id, 'units', false, 'unit_id', ["nama_unit","","",""], '', "", [], [], [], [], [], [], false, '', '', "`nama_unit`");
                 break;
             default:
@@ -301,9 +292,6 @@ class Dispositions extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
-                $this->status->Lookup = new Lookup($this->status, 'dispositions', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
-                break;
-            case "id-ID":
                 $this->status->Lookup = new Lookup($this->status, 'dispositions', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
             default:

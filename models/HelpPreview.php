@@ -614,7 +614,7 @@ class HelpPreview extends Help
         $item->OnLeft = true;
 
         // Drop down button for ListOptions
-        $this->ListOptions->UseDropDownButton = false;
+        $this->ListOptions->UseDropDownButton = true;
         $this->ListOptions->DropDownButtonPhrase = $this->language->phrase("ButtonListOptions");
         $this->ListOptions->UseButtonGroup = true;
         //$this->ListOptions->ButtonClass = ""; // Class for button group

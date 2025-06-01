@@ -52,8 +52,8 @@ loadjs.ready(["wrapper", "head"], function () {
             ["jenis", [fields.jenis.visible && fields.jenis.required ? ew.Validators.required(fields.jenis.caption) : null], fields.jenis.isInvalid],
             ["klasifikasi", [fields.klasifikasi.visible && fields.klasifikasi.required ? ew.Validators.required(fields.klasifikasi.caption) : null], fields.klasifikasi.isInvalid],
             ["pengirim", [fields.pengirim.visible && fields.pengirim.required ? ew.Validators.required(fields.pengirim.caption) : null], fields.pengirim.isInvalid],
-            ["penerima_unit_id", [fields.penerima_unit_id.visible && fields.penerima_unit_id.required ? ew.Validators.required(fields.penerima_unit_id.caption) : null], fields.penerima_unit_id.isInvalid],
-            ["file_url", [fields.file_url.visible && fields.file_url.required ? ew.Validators.fileRequired(fields.file_url.caption) : null], fields.file_url.isInvalid],
+            ["penerima_unit_id", [fields.penerima_unit_id.visible && fields.penerima_unit_id.required ? ew.Validators.required(fields.penerima_unit_id.caption) : null, ew.Validators.integer], fields.penerima_unit_id.isInvalid],
+            ["file_url", [fields.file_url.visible && fields.file_url.required ? ew.Validators.required(fields.file_url.caption) : null], fields.file_url.isInvalid],
             ["status", [fields.status.visible && fields.status.required ? ew.Validators.required(fields.status.caption) : null], fields.status.isInvalid],
             ["created_by", [fields.created_by.visible && fields.created_by.required ? ew.Validators.required(fields.created_by.caption) : null], fields.created_by.isInvalid],
             ["created_at", [fields.created_at.visible && fields.created_at.required ? ew.Validators.required(fields.created_at.caption) : null], fields.created_at.isInvalid],
@@ -75,7 +75,6 @@ loadjs.ready(["wrapper", "head"], function () {
         .setLists({
             "jenis": <?= $Page->jenis->toClientList($Page) ?>,
             "klasifikasi": <?= $Page->klasifikasi->toClientList($Page) ?>,
-            "penerima_unit_id": <?= $Page->penerima_unit_id->toClientList($Page) ?>,
             "status": <?= $Page->status->toClientList($Page) ?>,
         })
         .build();
@@ -326,79 +325,35 @@ loadjs.ready(['flettersedit', 'jqueryinputmask'], function() {
         <label id="elh_letters_penerima_unit_id" for="x_penerima_unit_id" class="<?= $Page->LeftColumnClass ?>"><?= $Page->penerima_unit_id->caption() ?><?= $Page->penerima_unit_id->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
         <div class="<?= $Page->RightColumnClass ?>"><div<?= $Page->penerima_unit_id->cellAttributes() ?>>
 <span id="el_letters_penerima_unit_id">
-    <select
-        id="x_penerima_unit_id"
-        name="x_penerima_unit_id"
-        class="form-select ew-select<?= $Page->penerima_unit_id->isInvalidClass() ?>"
-        <?php if (!$Page->penerima_unit_id->IsNativeSelect) { ?>
-        data-select2-id="flettersedit_x_penerima_unit_id"
-        <?php } ?>
-        data-table="letters"
-        data-field="x_penerima_unit_id"
-        data-value-separator="<?= $Page->penerima_unit_id->displayValueSeparatorAttribute() ?>"
-        data-placeholder="<?= HtmlEncode($Page->penerima_unit_id->getPlaceHolder()) ?>"
-        <?= $Page->penerima_unit_id->editAttributes() ?>>
-        <?= $Page->penerima_unit_id->selectOptionListHtml("x_penerima_unit_id") ?>
-    </select>
-    <?= $Page->penerima_unit_id->getCustomMessage() ?>
-    <div class="invalid-feedback"><?= $Page->penerima_unit_id->getErrorMessage() ?></div>
-<?= $Page->penerima_unit_id->Lookup->getParamTag($Page, "p_x_penerima_unit_id") ?>
-<?php if (!$Page->penerima_unit_id->IsNativeSelect) { ?>
+<input type="<?= $Page->penerima_unit_id->getInputTextType() ?>" name="x_penerima_unit_id" id="x_penerima_unit_id" data-table="letters" data-field="x_penerima_unit_id" value="<?= $Page->penerima_unit_id->getEditValue() ?>" size="30" placeholder="<?= HtmlEncode($Page->penerima_unit_id->getPlaceHolder()) ?>" data-format-pattern="<?= HtmlEncode($Page->penerima_unit_id->formatPattern()) ?>"<?= $Page->penerima_unit_id->editAttributes() ?> aria-describedby="x_penerima_unit_id_help">
+<?= $Page->penerima_unit_id->getCustomMessage() ?>
+<div class="invalid-feedback"><?= $Page->penerima_unit_id->getErrorMessage() ?></div>
 <script<?= Nonce() ?>>
-loadjs.ready("flettersedit", function() {
-    var options = { name: "x_penerima_unit_id", selectId: "flettersedit_x_penerima_unit_id" },
-        el = document.querySelector("select[data-select2-id='" + options.selectId + "']");
-    if (!el)
-        return;
-    options.closeOnSelect = !options.multiple;
-    options.dropdownParent = el.closest("#ew-modal-dialog, #ew-add-opt-dialog");
-    if (flettersedit.lists.penerima_unit_id?.lookupOptions.length) {
-        options.data = { id: "x_penerima_unit_id", form: "flettersedit" };
-    } else {
-        options.ajax = { id: "x_penerima_unit_id", form: "flettersedit", limit: ew.LOOKUP_PAGE_SIZE };
-    }
-    options.minimumResultsForSearch = Infinity;
-    options = Object.assign({}, ew.selectOptions, options, ew.vars.tables.letters.fields.penerima_unit_id.selectOptions);
-    ew.createSelect(options);
+loadjs.ready(['flettersedit', 'jqueryinputmask'], function() {
+	options = {
+		'alias': 'numeric',
+		'autoUnmask': true,
+		'jitMasking': false,
+		'groupSeparator': '<?php echo $GROUPING_SEPARATOR ?>',
+		'digits': 0,
+		'radixPoint': '<?php echo $DECIMAL_SEPARATOR ?>',
+		'removeMaskOnSubmit': true
+	};
+	ew.createjQueryInputMask("flettersedit", "x_penerima_unit_id", jQuery.extend(true, "", options));
 });
 </script>
-<?php } ?>
 </span>
 </div></div>
     </div>
 <?php } ?>
 <?php if ($Page->file_url->Visible) { // file_url ?>
     <div id="r_file_url"<?= $Page->file_url->rowAttributes() ?>>
-        <label id="elh_letters_file_url" class="<?= $Page->LeftColumnClass ?>"><?= $Page->file_url->caption() ?><?= $Page->file_url->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+        <label id="elh_letters_file_url" for="x_file_url" class="<?= $Page->LeftColumnClass ?>"><?= $Page->file_url->caption() ?><?= $Page->file_url->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
         <div class="<?= $Page->RightColumnClass ?>"><div<?= $Page->file_url->cellAttributes() ?>>
 <span id="el_letters_file_url">
-<div id="fd_x_file_url" class="fileinput-button ew-file-drop-zone">
-    <input
-        type="file"
-        id="x_file_url"
-        name="x_file_url"
-        class="form-control ew-file-input"
-        title="<?= $Page->file_url->title() ?>"
-        lang="<?= CurrentLanguageID() ?>"
-        data-table="letters"
-        data-field="x_file_url"
-        data-size="255"
-        data-accept-file-types="<?= $Page->file_url->acceptFileTypes() ?>"
-        data-max-file-size="<?= $Page->file_url->UploadMaxFileSize ?>"
-        data-max-number-of-files="<?= $Page->file_url->UploadMaxFileCount ?>"
-        data-disable-image-crop="<?= $Page->file_url->ImageCropper ? 0 : 1 ?>"
-        multiple
-        aria-describedby="x_file_url_help"
-        <?= ($Page->file_url->ReadOnly || $Page->file_url->Disabled) ? " disabled" : "" ?>
-        <?= $Page->file_url->editAttributes() ?>
-    >
-    <div class="text-body-secondary ew-file-text"><?= $Language->phrase("ChooseFiles") ?></div>
-    <?= $Page->file_url->getCustomMessage() ?>
-    <div class="invalid-feedback"><?= $Page->file_url->getErrorMessage() ?></div>
-</div>
-<input type="hidden" name="fn_x_file_url" id= "fn_x_file_url" value="<?= $Page->file_url->Upload->FileName ?>">
-<input type="hidden" name="fa_x_file_url" id= "fa_x_file_url" value="<?= (Post("fa_x_file_url") == "0") ? "0" : "1" ?>">
-<table id="ft_x_file_url" class="table table-sm float-start ew-upload-table"><tbody class="files"></tbody></table>
+<input type="<?= $Page->file_url->getInputTextType() ?>" name="x_file_url" id="x_file_url" data-table="letters" data-field="x_file_url" value="<?= $Page->file_url->getEditValue() ?>" size="30" maxlength="255" placeholder="<?= HtmlEncode($Page->file_url->getPlaceHolder()) ?>" data-format-pattern="<?= HtmlEncode($Page->file_url->formatPattern()) ?>"<?= $Page->file_url->editAttributes() ?> aria-describedby="x_file_url_help">
+<?= $Page->file_url->getCustomMessage() ?>
+<div class="invalid-feedback"><?= $Page->file_url->getErrorMessage() ?></div>
 </span>
 </div></div>
     </div>

@@ -692,7 +692,6 @@ class TracksList extends Tracks
         $this->setupOtherOptions();
 
         // Set up lookup cache
-        $this->setupLookupOptions($this->letter_id);
         $this->setupLookupOptions($this->_action);
 
         // Update form name to avoid conflict
@@ -1364,7 +1363,7 @@ class TracksList extends Tracks
         $item->ShowInButtonGroup = false;
 
         // Drop down button for ListOptions
-        $this->ListOptions->UseDropDownButton = false;
+        $this->ListOptions->UseDropDownButton = true;
         $this->ListOptions->DropDownButtonPhrase = $this->language->phrase("ButtonListOptions");
         $this->ListOptions->UseButtonGroup = true;
         if ($this->ListOptions->UseButtonGroup && IsMobile()) {
@@ -1539,7 +1538,7 @@ class TracksList extends Tracks
         // Set up options default
         foreach ($options as $name => $option) {
             if ($name != "column") { // Always use dropdown for column
-                $option->UseDropDownButton = false;
+                $option->UseDropDownButton = true;
                 $option->UseButtonGroup = true;
             }
             //$option->ButtonClass = ""; // Class for button group
@@ -2036,28 +2035,8 @@ class TracksList extends Tracks
             $this->track_id->ViewValue = $this->track_id->CurrentValue;
 
             // letter_id
-            $curVal = strval($this->letter_id->CurrentValue);
-            if ($curVal != "") {
-                $this->letter_id->ViewValue = $this->letter_id->lookupCacheOption($curVal);
-                if ($this->letter_id->ViewValue === null) { // Lookup from database
-                    $filterWrk = SearchFilter($this->letter_id->Lookup->getTable()->Fields["letter_id"]->searchExpression(), "=", $curVal, $this->letter_id->Lookup->getTable()->Fields["letter_id"]->searchDataType(), "DB");
-                    $sqlWrk = $this->letter_id->Lookup->getSql(false, $filterWrk, '', $this, true, true);
-                    $conn = Conn();
-                    $rswrk = $conn->executeQuery($sqlWrk)->fetchAllAssociative();
-                    $ari = count($rswrk);
-                    if ($ari > 0) { // Lookup values found
-                        $rows = [];
-                        foreach ($rswrk as $row) {
-                            $rows[] = $this->letter_id->Lookup->renderViewRow($row);
-                        }
-                        $this->letter_id->ViewValue = $this->letter_id->displayValue($rows[0]);
-                    } else {
-                        $this->letter_id->ViewValue = FormatNumber($this->letter_id->CurrentValue, $this->letter_id->formatPattern());
-                    }
-                }
-            } else {
-                $this->letter_id->ViewValue = null;
-            }
+            $this->letter_id->ViewValue = $this->letter_id->CurrentValue;
+            $this->letter_id->ViewValue = FormatNumber($this->letter_id->ViewValue, $this->letter_id->formatPattern());
 
             // user_id
             $this->user_id->ViewValue = $this->user_id->CurrentValue;
@@ -2194,8 +2173,6 @@ class TracksList extends Tracks
 
             // Set up lookup SQL and connection
             switch ($fld->FieldVar) {
-                case "x_letter_id":
-                    break;
                 case "x__action":
                     break;
                 default:

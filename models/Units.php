@@ -200,10 +200,10 @@ class Units extends DbTable implements LookupTableInterface
             'FORMATTED TEXT', // View Tag
             'TEXT' // Edit Tag
         );
-        $this->created_at->addMethod("getAutoUpdateValue", fn() => CurrentDateTime());
         $this->created_at->InputTextType = "text";
         $this->created_at->Raw = true;
         $this->created_at->Nullable = false; // NOT NULL field
+        $this->created_at->Required = true; // Required field
         $this->created_at->DefaultErrorMessage = str_replace("%s", $GLOBALS["DATE_FORMAT"], $this->language->phrase("IncorrectDate"));
         $this->created_at->SearchOperators = ["=", "<>", "IN", "NOT IN", "<", "<=", ">", ">=", "BETWEEN", "NOT BETWEEN"];
         $this->Fields['created_at'] = &$this->created_at;
@@ -1291,11 +1291,6 @@ class Units extends DbTable implements LookupTableInterface
     public function renderLookupForView(string $name, mixed $value): mixed
     {
         $this->RowType = RowType::VIEW;
-        if ($name == "unit_id") {
-            $clone = $this->unit_id->getClone()->setViewValue($value);
-            $clone->ViewValue = $clone->CurrentValue;
-            return $clone->getViewValue();
-        }
         if ($name == "nama_unit") {
             $clone = $this->nama_unit->getClone()->setViewValue($value);
             $clone->ViewValue = $clone->CurrentValue;
