@@ -1,0 +1,577 @@
+<ew-language date="2025/6/1" id="id-ID" author="e.World Technology Limited">
+  <project>
+    <phrase id="bodytitle" value="Arsip Uncen" />
+    <phrase id="footertext" value="&amp;copy;2025 John E. Samori. All rights reserved." />
+    <menu id="4">
+      <phrase id="menutext" value="Home" />
+    </menu>
+    <menu id="40">
+      <phrase id="menutext" value="Master" />
+    </menu>
+    <menu id="44">
+      <phrase id="menutext" value="Units" />
+    </menu>
+    <menu id="39">
+      <phrase id="menutext" value="Data" />
+    </menu>
+    <menu id="42">
+      <phrase id="menutext" value="Letters" />
+    </menu>
+    <menu id="41">
+      <phrase id="menutext" value="Dispositions" />
+    </menu>
+    <menu id="43">
+      <phrase id="menutext" value="Tracks" />
+    </menu>
+    <menu id="16">
+      <phrase id="menutext" value="User Profile" />
+    </menu>
+    <menu id="5">
+      <phrase id="menutext" value="HELP" />
+    </menu>
+    <menu id="6">
+      <phrase id="menutext" value="Help (Details)" />
+    </menu>
+    <menu id="13">
+      <phrase id="menutext" value="Terms and Condition" />
+    </menu>
+    <menu id="14">
+      <phrase id="menutext" value="About Us" />
+    </menu>
+    <menu id="12">
+      <phrase id="menutext" value="ADMIN" />
+    </menu>
+    <menu id="1">
+      <phrase id="menutext" value="Users" />
+    </menu>
+    <menu id="3">
+      <phrase id="menutext" value="User Levels" />
+    </menu>
+    <menu id="2">
+      <phrase id="menutext" value="User Level Permissions" />
+    </menu>
+    <menu id="8">
+      <phrase id="menutext" value="Application Settings" />
+    </menu>
+    <menu id="7">
+      <phrase id="menutext" value="Languages" />
+    </menu>
+    <menu id="15">
+      <phrase id="menutext" value="Announcement" />
+    </menu>
+    <table id="announcement">
+      <phrase id="tblcaption" value="Announcement" />
+      <field id="announcement_id">
+        <phrase id="fldcaption" value="Announcement ID" />
+      </field>
+      <field id="is_active">
+        <phrase id="fldcaption" value="Is Active" />
+        <phrase id="fldtagvalue1" value="N" />
+        <phrase id="fldtagcaption1" value="No" />
+        <phrase id="fldtagvalue2" value="Y" />
+        <phrase id="fldtagcaption2" value="Yes" />
+      </field>
+      <field id="topic">
+        <phrase id="fldcaption" value="Topic" />
+      </field>
+      <field id="message">
+        <phrase id="fldcaption" value="Message" />
+      </field>
+      <field id="date_lastupdate">
+        <phrase id="fldcaption" value="Date Last Update" />
+      </field>
+      <field id="_language">
+        <phrase id="fldcaption" value="Language" />
+      </field>
+      <field id="auto_publish">
+        <phrase id="fldcaption" value="Auto Publish" />
+        <phrase id="fldtagvalue1" value="Y" />
+        <phrase id="fldtagcaption1" value="Yes" />
+        <phrase id="fldtagvalue2" value="N" />
+        <phrase id="fldtagcaption2" value="No" />
+      </field>
+      <field id="date_start">
+        <phrase id="fldcaption" value="Date Start" />
+      </field>
+      <field id="date_end">
+        <phrase id="fldcaption" value="Date End" />
+      </field>
+      <field id="date_created">
+        <phrase id="fldcaption" value="Date Created" />
+      </field>
+      <field id="created_by">
+        <phrase id="fldcaption" value="Created By" />
+      </field>
+      <field id="translated_id">
+        <phrase id="fldcaption" value="Translated ID" />
+      </field>
+    </table>
+    <table id="help">
+      <phrase id="tblcaption" value="Help (Details)" />
+      <field id="help_id">
+        <phrase id="fldcaption" value="Help ID" />
+      </field>
+      <field id="_language">
+        <phrase id="fldcaption" value="Language" />
+      </field>
+      <field id="topic">
+        <phrase id="fldcaption" value="Topic" />
+      </field>
+      <field id="description">
+        <phrase id="fldcaption" value="Description" />
+      </field>
+      <field id="category">
+        <phrase id="fldcaption" value="Category" />
+      </field>
+      <field id="order">
+        <phrase id="fldcaption" value="Order" />
+      </field>
+      <field id="display_in_page">
+        <phrase id="fldcaption" value="Display in Page" />
+      </field>
+      <field id="updated_by">
+        <phrase id="fldcaption" value="Updated By" />
+      </field>
+      <field id="last_updated">
+        <phrase id="fldcaption" value="Last Updated" />
+      </field>
+    </table>
+    <table id="help_categories">
+      <phrase id="tblcaption" value="Help (Categories)" />
+      <field id="category_id">
+        <phrase id="fldcaption" value="Category ID" />
+      </field>
+      <field id="_language">
+        <phrase id="fldcaption" value="Language" />
+      </field>
+      <field id="category_description">
+        <phrase id="fldcaption" value="Category Description" />
+      </field>
+    </table>
+    <table id="home">
+      <phrase id="tblcaption" value="Home" />
+    </table>
+    <table id="languages">
+      <phrase id="tblcaption" value="Languages" />
+      <field id="language_code">
+        <phrase id="fldcaption" value="Language Code" />
+      </field>
+      <field id="language_name">
+        <phrase id="fldcaption" value="Language Name" />
+      </field>
+      <field id="default">
+        <phrase id="fldcaption" value="Default" />
+        <phrase id="fldtagvalue1" value="Y" />
+        <phrase id="fldtagcaption1" value="Yes" />
+        <phrase id="fldtagvalue2" value="N" />
+        <phrase id="fldtagcaption2" value="No" />
+      </field>
+      <field id="site_logo">
+        <phrase id="fldcaption" value="Site Logo" />
+      </field>
+      <field id="site_title">
+        <phrase id="fldcaption" value="Site Title" />
+      </field>
+      <field id="default_thousands_separator">
+        <phrase id="fldcaption" value="Default Thousands Separator" />
+      </field>
+      <field id="default_decimal_point">
+        <phrase id="fldcaption" value="Default Decimal Point" />
+      </field>
+      <field id="default_currency_symbol">
+        <phrase id="fldcaption" value="Default Currency Symbol" />
+      </field>
+      <field id="default_money_thousands_separator">
+        <phrase id="fldcaption" value="Default Money Thousands Separator" />
+      </field>
+      <field id="default_money_decimal_point">
+        <phrase id="fldcaption" value="Default Money Decimal Point" />
+      </field>
+      <field id="terms_and_condition_text">
+        <phrase id="fldcaption" value="Terms And Condition Text" />
+      </field>
+      <field id="announcement_text">
+        <phrase id="fldcaption" value="Announcement Text" />
+      </field>
+      <field id="about_text">
+        <phrase id="fldcaption" value="About Text" />
+      </field>
+    </table>
+    <table id="settings">
+      <phrase id="tblcaption" value="Application Settings" />
+      <field id="option_id">
+        <phrase id="fldcaption" value="Option ID" />
+      </field>
+      <field id="option_default">
+        <phrase id="fldcaption" value="Option Default" />
+        <phrase id="fldtagvalue1" value="Y" />
+        <phrase id="fldtagcaption1" value="Yes" />
+        <phrase id="fldtagvalue2" value="N" />
+        <phrase id="fldtagcaption2" value="No" />
+      </field>
+      <field id="show_announcement">
+        <phrase id="fldcaption" value="Show Announcement" />
+        <phrase id="fldtagvalue1" value="Y" />
+        <phrase id="fldtagcaption1" value="Yes" />
+        <phrase id="fldtagvalue2" value="N" />
+        <phrase id="fldtagcaption2" value="No" />
+      </field>
+      <field id="use_announcement_table">
+        <phrase id="fldcaption" value="Use Announcement Table" />
+        <phrase id="fldtagvalue1" value="N" />
+        <phrase id="fldtagcaption1" value="No" />
+        <phrase id="fldtagvalue2" value="Y" />
+        <phrase id="fldtagcaption2" value="Yes" />
+      </field>
+      <field id="maintenance_mode">
+        <phrase id="fldcaption" value="Maintenance Mode" />
+        <phrase id="fldtagvalue1" value="N" />
+        <phrase id="fldtagcaption1" value="No" />
+        <phrase id="fldtagvalue2" value="Y" />
+        <phrase id="fldtagcaption2" value="Yes" />
+      </field>
+      <field id="maintenance_finish_datetime">
+        <phrase id="fldcaption" value="Maintenance Finish Date Time" />
+      </field>
+      <field id="auto_normal_after_maintenance">
+        <phrase id="fldcaption" value="Auto Normal After Maintenance" />
+        <phrase id="fldtagvalue1" value="Y" />
+        <phrase id="fldtagcaption1" value="Yes" />
+        <phrase id="fldtagvalue2" value="N" />
+        <phrase id="fldtagcaption2" value="No" />
+      </field>
+    </table>
+    <table id="theuserprofile">
+      <phrase id="tblcaption" value="User Profile" />
+      <field id="_userid">
+        <phrase id="fldcaption" value="User ID" />
+      </field>
+      <field id="_username">
+        <phrase id="fldcaption" value="Username" />
+      </field>
+      <field id="_password">
+        <phrase id="fldcaption" value="Password" />
+      </field>
+      <field id="userlevel">
+        <phrase id="fldcaption" value="User Level" />
+      </field>
+      <field id="firstname">
+        <phrase id="fldcaption" value="First Name" />
+      </field>
+      <field id="lastname">
+        <phrase id="fldcaption" value="Last Name" />
+      </field>
+      <field id="completename">
+        <phrase id="fldcaption" value="Complete Name" />
+      </field>
+      <field id="birthdate">
+        <phrase id="fldcaption" value="Birth Date" />
+      </field>
+      <field id="homephone">
+        <phrase id="fldcaption" value="Home Phone" />
+      </field>
+      <field id="photo">
+        <phrase id="fldcaption" value="Photo" />
+      </field>
+      <field id="notes">
+        <phrase id="fldcaption" value="Notes" />
+      </field>
+      <field id="reportsto">
+        <phrase id="fldcaption" value="Reports To" />
+      </field>
+      <field id="gender">
+        <phrase id="fldcaption" value="Gender" />
+        <phrase id="fldtagvalue1" value="Male" />
+        <phrase id="fldtagcaption1" value="Male" />
+        <phrase id="fldtagvalue2" value="Female" />
+        <phrase id="fldtagcaption2" value="Female" />
+      </field>
+      <field id="_email">
+        <phrase id="fldcaption" value="Email" />
+      </field>
+      <field id="activated">
+        <phrase id="fldcaption" value="Activated" />
+        <phrase id="fldtagvalue1" value="Y" />
+        <phrase id="fldtagcaption1" value="Yes" />
+        <phrase id="fldtagvalue2" value="N" />
+        <phrase id="fldtagcaption2" value="No" />
+      </field>
+      <field id="_profile">
+        <phrase id="fldcaption" value="Profile" />
+      </field>
+      <field id="avatar">
+        <phrase id="fldcaption" value="Avatar" />
+      </field>
+      <field id="activestatus">
+        <phrase id="fldcaption" value="Active Status" />
+        <phrase id="fldtagvalue1" value="1" />
+        <phrase id="fldtagcaption1" value="Yes" />
+        <phrase id="fldtagvalue2" value="0" />
+        <phrase id="fldtagcaption2" value="No" />
+      </field>
+      <field id="messengercolor">
+        <phrase id="fldcaption" value="Messenger Color" />
+      </field>
+      <field id="createdat">
+        <phrase id="fldcaption" value="Created At" />
+      </field>
+      <field id="createdby">
+        <phrase id="fldcaption" value="Created By" />
+      </field>
+      <field id="updatedat">
+        <phrase id="fldcaption" value="Updated At" />
+      </field>
+      <field id="updatedby">
+        <phrase id="fldcaption" value="Updated By" />
+      </field>
+    </table>
+    <table id="userlevelpermissions">
+      <phrase id="tblcaption" value="User Level Permissions" />
+      <field id="userlevelid">
+        <phrase id="fldcaption" value="User Level ID" />
+      </field>
+      <field id="_tablename">
+        <phrase id="fldcaption" value="Table Name" />
+      </field>
+      <field id="_permission">
+        <phrase id="fldcaption" value="Permission" />
+      </field>
+    </table>
+    <table id="userlevels">
+      <phrase id="tblcaption" value="User Levels" />
+      <field id="id">
+        <phrase id="fldcaption" value="ID" />
+      </field>
+      <field id="name">
+        <phrase id="fldcaption" value="Name" />
+      </field>
+      <field id="hierarchy">
+        <phrase id="fldcaption" value="Hierarchy" />
+      </field>
+      <field id="level_origin">
+        <phrase id="fldcaption" value="Origin Level" />
+      </field>
+    </table>
+    <table id="users">
+      <phrase id="tblcaption" value="Users" />
+      <field id="_userid">
+        <phrase id="fldcaption" value="User ID" />
+      </field>
+      <field id="_username">
+        <phrase id="fldcaption" value="Username" />
+      </field>
+      <field id="_password">
+        <phrase id="fldcaption" value="Password" />
+      </field>
+      <field id="userlevel">
+        <phrase id="fldcaption" value="User Level" />
+      </field>
+      <field id="firstname">
+        <phrase id="fldcaption" value="First Name" />
+      </field>
+      <field id="lastname">
+        <phrase id="fldcaption" value="Last Name" />
+      </field>
+      <field id="completename">
+        <phrase id="fldcaption" value="Complete Name" />
+      </field>
+      <field id="birthdate">
+        <phrase id="fldcaption" value="Birth Date" />
+      </field>
+      <field id="homephone">
+        <phrase id="fldcaption" value="Home Phone" />
+      </field>
+      <field id="photo">
+        <phrase id="fldcaption" value="Photo" />
+      </field>
+      <field id="notes">
+        <phrase id="fldcaption" value="Notes" />
+      </field>
+      <field id="reportsto">
+        <phrase id="fldcaption" value="Reports To" />
+      </field>
+      <field id="gender">
+        <phrase id="fldcaption" value="Gender" />
+        <phrase id="fldtagvalue1" value="Male" />
+        <phrase id="fldtagcaption1" value="Male" />
+        <phrase id="fldtagvalue2" value="Female" />
+        <phrase id="fldtagcaption2" value="Female" />
+      </field>
+      <field id="_email">
+        <phrase id="fldcaption" value="Email" />
+      </field>
+      <field id="activated">
+        <phrase id="fldcaption" value="Activated" />
+        <phrase id="fldtagvalue1" value="Y" />
+        <phrase id="fldtagcaption1" value="Yes" />
+        <phrase id="fldtagvalue2" value="N" />
+        <phrase id="fldtagcaption2" value="No" />
+      </field>
+      <field id="_profile">
+        <phrase id="fldcaption" value="Profile" />
+      </field>
+      <field id="avatar">
+        <phrase id="fldcaption" value="Avatar" />
+      </field>
+      <field id="activestatus">
+        <phrase id="fldcaption" value="Active Status" />
+        <phrase id="fldtagvalue1" value="1" />
+        <phrase id="fldtagcaption1" value="Yes" />
+        <phrase id="fldtagvalue2" value="0" />
+        <phrase id="fldtagcaption2" value="No" />
+      </field>
+      <field id="messengercolor">
+        <phrase id="fldcaption" value="Messenger Color" />
+      </field>
+      <field id="createdat">
+        <phrase id="fldcaption" value="Created At" />
+      </field>
+      <field id="createdby">
+        <phrase id="fldcaption" value="Created By" />
+      </field>
+      <field id="updatedat">
+        <phrase id="fldcaption" value="Updated At" />
+      </field>
+      <field id="updatedby">
+        <phrase id="fldcaption" value="Updated By" />
+      </field>
+    </table>
+    <table id="dispositions">
+      <phrase id="tblcaption" value="dispositions" />
+      <field id="disposition_id">
+        <phrase id="fldcaption" value="disposition id" />
+      </field>
+      <field id="letter_id">
+        <phrase id="fldcaption" value="letter id" />
+      </field>
+      <field id="dari_unit_id">
+        <phrase id="fldcaption" value="dari unit id" />
+      </field>
+      <field id="ke_unit_id">
+        <phrase id="fldcaption" value="ke unit id" />
+      </field>
+      <field id="catatan">
+        <phrase id="fldcaption" value="catatan" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="status" />
+        <phrase id="fldtagvalue1" value="diterima" />
+        <phrase id="fldtagcaption1" value="diterima" />
+        <phrase id="fldtagvalue2" value="ditolak" />
+        <phrase id="fldtagcaption2" value="ditolak" />
+        <phrase id="fldtagvalue3" value="diproses" />
+        <phrase id="fldtagcaption3" value="diproses" />
+      </field>
+      <field id="created_at">
+        <phrase id="fldcaption" value="created at" />
+      </field>
+    </table>
+    <table id="letters">
+      <phrase id="tblcaption" value="letters" />
+      <field id="letter_id">
+        <phrase id="fldcaption" value="letter id" />
+      </field>
+      <field id="nomor_surat">
+        <phrase id="fldcaption" value="nomor surat" />
+      </field>
+      <field id="perihal">
+        <phrase id="fldcaption" value="perihal" />
+      </field>
+      <field id="tanggal_surat">
+        <phrase id="fldcaption" value="tanggal surat" />
+      </field>
+      <field id="tanggal_terima">
+        <phrase id="fldcaption" value="tanggal terima" />
+      </field>
+      <field id="jenis">
+        <phrase id="fldcaption" value="jenis" />
+        <phrase id="fldtagvalue1" value="masuk" />
+        <phrase id="fldtagcaption1" value="masuk" />
+        <phrase id="fldtagvalue2" value="keluar" />
+        <phrase id="fldtagcaption2" value="keluar" />
+      </field>
+      <field id="klasifikasi">
+        <phrase id="fldcaption" value="klasifikasi" />
+        <phrase id="fldtagvalue1" value="biasa" />
+        <phrase id="fldtagcaption1" value="biasa" />
+        <phrase id="fldtagvalue2" value="penting" />
+        <phrase id="fldtagcaption2" value="penting" />
+        <phrase id="fldtagvalue3" value="rahasia" />
+        <phrase id="fldtagcaption3" value="rahasia" />
+      </field>
+      <field id="pengirim">
+        <phrase id="fldcaption" value="pengirim" />
+      </field>
+      <field id="penerima_unit_id">
+        <phrase id="fldcaption" value="penerima unit id" />
+      </field>
+      <field id="file_url">
+        <phrase id="fldcaption" value="file url" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="status" />
+        <phrase id="fldtagvalue1" value="draft" />
+        <phrase id="fldtagcaption1" value="draft" />
+        <phrase id="fldtagvalue2" value="terkirim" />
+        <phrase id="fldtagcaption2" value="terkirim" />
+        <phrase id="fldtagvalue3" value="disposisi" />
+        <phrase id="fldtagcaption3" value="disposisi" />
+        <phrase id="fldtagvalue4" value="selesai" />
+        <phrase id="fldtagcaption4" value="selesai" />
+      </field>
+      <field id="created_by">
+        <phrase id="fldcaption" value="created by" />
+      </field>
+      <field id="created_at">
+        <phrase id="fldcaption" value="created at" />
+      </field>
+      <field id="updated_at">
+        <phrase id="fldcaption" value="updated at" />
+      </field>
+    </table>
+    <table id="tracks">
+      <phrase id="tblcaption" value="tracks" />
+      <field id="track_id">
+        <phrase id="fldcaption" value="track id" />
+      </field>
+      <field id="letter_id">
+        <phrase id="fldcaption" value="letter id" />
+      </field>
+      <field id="user_id">
+        <phrase id="fldcaption" value="user id" />
+      </field>
+      <field id="_action">
+        <phrase id="fldcaption" value="action" />
+        <phrase id="fldtagvalue1" value="create" />
+        <phrase id="fldtagcaption1" value="create" />
+        <phrase id="fldtagvalue2" value="update" />
+        <phrase id="fldtagcaption2" value="update" />
+        <phrase id="fldtagvalue3" value="disposisi" />
+        <phrase id="fldtagcaption3" value="disposisi" />
+        <phrase id="fldtagvalue4" value="selesai" />
+        <phrase id="fldtagcaption4" value="selesai" />
+      </field>
+      <field id="keterangan">
+        <phrase id="fldcaption" value="keterangan" />
+      </field>
+      <field id="created_at">
+        <phrase id="fldcaption" value="created at" />
+      </field>
+    </table>
+    <table id="units">
+      <phrase id="tblcaption" value="units" />
+      <field id="unit_id">
+        <phrase id="fldcaption" value="unit id" />
+      </field>
+      <field id="nama_unit">
+        <phrase id="fldcaption" value="nama unit" />
+      </field>
+      <field id="kode_unit">
+        <phrase id="fldcaption" value="kode unit" />
+      </field>
+      <field id="created_at">
+        <phrase id="fldcaption" value="created at" />
+      </field>
+    </table>
+  </project>
+</ew-language>

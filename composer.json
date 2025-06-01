@@ -1,0 +1,98 @@
+{
+    "name": "hkvstore/phpmaker",
+    "version": "2025",
+    "type": "project",
+    "homepage": "https://phpmaker.dev/",
+    "license": "Commercial",
+    "authors": [
+        {
+            "name": "e.World Technology Limited",
+            "email": "sales@hkvstore.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "ext-intl": "*",
+        "slim/slim": "^4.13.0",
+        "slim/csrf": "^1.5.0",
+        "slim/http": "^1.3.0",
+        "slim/http-cache": "^1.1.0",
+        "slim/php-view": "^3.2.0",
+        "nyholm/psr7": "^1.8.1",
+        "nyholm/psr7-server": "^1.1.0",
+        "php-di/php-di": "^7.0.6",
+        "doctrine/dbal": "^4.0.2",
+        "doctrine/orm": "^3.2.0",
+        "gedmo/doctrine-extensions": "^3.17.0",
+        "monolog/monolog": "^3.6.0",
+        "firebase/php-jwt": "^6.10.0",
+        "ezyang/htmlpurifier": "^4.17.0",
+        "hkvstore/phpthumb": "^2.1.4",
+        "hkvstore/cors-middleware": "^1.4.4",
+        "mobiledetect/mobiledetectlib": "^4.8.06",
+        "soundasleep/html2text": "^2.1.0",
+        "defuse/php-encryption": "~2.4.0",
+        "dflydev/dot-access-data": "^3.0.2",
+        "dflydev/fig-cookies": "^3.1.0",
+        "illuminate/filesystem": "^v11.0.0",
+        "illuminate/collections": "^v11.0.0",
+        "illuminate/encryption": "^v11.0.0",
+        "symfony/cache": "^v7.0.0",
+        "symfony/event-dispatcher": "^v7.0.0",
+        "symfony/mime": "^v7.0.0",
+        "symfony/finder": "^v7.0.0",
+        "symfony/filesystem": "^v7.0.0",
+        "symfony/var-exporter": "^v7.0.0",
+        "symfony/http-foundation": "^v7.0.0",
+        "symfony/routing": "^v7.0.0",
+        "symfony/config": "^v7.0.0",
+        "symfony/notifier": "^v7.0.0",
+        "symfony/mailer": "^v7.0.0",
+        "symfony/validator": "^v7.0.0",
+        "ramsey/uuid": "^4.7.5",
+        "jawira/case-converter": "^3.5.1",
+        "filp/whoops": "^2.15.4",
+        "spatie/color": "^1.7.0",
+        "spatie/php-cloneable": "^1.0.2",
+        "paragonie/csp-builder": "^3.0.0",
+        "league/flysystem": "^3.0",
+        "ntzrbtr/flysystem-http": "^1.1.0",
+        "php-debugbar/php-debugbar": "^2.1.6",
+        "hkvstore/php-debug-bar": "^4.2.1",
+        "hkvstore/didom": "^2.0.2",
+        "firehed/dbal-logger": "^2.1.0",
+        "symfony/doctrine-bridge": "^v7.0.0",
+        "symfony/psr-http-message-bridge": "^v7.0.0",
+        "symfony/security-bundle": "^v7.0.0",
+        "symfony/rate-limiter": "^v7.0.0",
+        "symfony/polyfill-php83": "^1.31.0",
+        "symfony/polyfill-php84": "^1.31.0",
+        "hkvstore/dompdf": "~3.1.0",
+        "tinymce/tinymce": "^6.8.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPMaker2025\\ucarsip\\": [
+                "src/",
+                "models/",
+                "controllers/"
+            ],
+            "": [
+                "src/",
+                "controllers/"
+            ]
+        },
+        "classmap": [
+            "src/PasswordHash.php"
+        ]
+    },
+    "config": {
+        "platform": {
+            "php": "8.2.4"
+        },
+        "allow-plugins": true
+    },
+    "scripts": {
+        "routes": "PHPMaker2025\\ucarsip\\RouteAttributes::dispatch"
+    }
+}

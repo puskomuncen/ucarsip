@@ -1,0 +1,15 @@
+{
+  "id": "en-US",
+  "desc": "English (United States)",
+  "number": "#,##0.###",
+  "currency": "¤#,##0.00",
+  "currency_code": "USD",
+  "currency_symbol": "$",
+  "percent": "#,##0%",
+  "decimal_separator": ".",
+  "grouping_separator": ",",
+  "numbering_system": null,
+  "date": "yyyy-MM-dd",
+  "time": "HH:mm",
+  "time_zone": "Asia/Jakarta"
+}

@@ -1,0 +1,1 @@
+ew.events={};ew.charts={};ew.clientScript=function(){ew.selectMinimumInputLength=0;ew.selectOptions.minimumResultsForSearch=0};ew.startupScript=function(){$("#ew-modal-dialog").on("shown.bs.modal",(function(event){$(this).find(".modal-dialog.modal-xl").removeClass("modal-xl").addClass("modal-lg")}))};
