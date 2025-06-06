@@ -1,4 +1,4 @@
-<ew-language date="2025/6/1" id="id-ID" author="e.World Technology Limited">
+<ew-language date="2025/6/6" id="id-ID" author="e.World Technology Limited">
   <project>
     <phrase id="bodytitle" value="Arsip Uncen" />
     <phrase id="footertext" value="&amp;copy;2025 John E. Samori. All rights reserved." />
@@ -9,19 +9,19 @@
       <phrase id="menutext" value="Master" />
     </menu>
     <menu id="44">
-      <phrase id="menutext" value="Units" />
+      <phrase id="menutext" value="units" />
     </menu>
     <menu id="39">
       <phrase id="menutext" value="Data" />
     </menu>
     <menu id="42">
-      <phrase id="menutext" value="Letters" />
+      <phrase id="menutext" value="letters" />
     </menu>
     <menu id="41">
-      <phrase id="menutext" value="Dispositions" />
+      <phrase id="menutext" value="dispositions" />
     </menu>
     <menu id="43">
-      <phrase id="menutext" value="Tracks" />
+      <phrase id="menutext" value="tracks" />
     </menu>
     <menu id="16">
       <phrase id="menutext" value="User Profile" />

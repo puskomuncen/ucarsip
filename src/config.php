@@ -35,7 +35,7 @@ $TIME_ZONE = "UTC";
 /**
  * Global variables
  */
-$LANGUAGES = ["en-US"];
+$LANGUAGES = ["en-US","id-ID"];
 $Conn = null; // Primary connection
 $Page = null; // Page
 $Table = null; // Main table

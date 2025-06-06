@@ -269,6 +269,9 @@ class Letters extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->jenis->Lookup = new Lookup($this->jenis, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
+            case "id-ID":
+                $this->jenis->Lookup = new Lookup($this->jenis, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
+                break;
             default:
                 $this->jenis->Lookup = new Lookup($this->jenis, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
@@ -302,6 +305,9 @@ class Letters extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
+                $this->klasifikasi->Lookup = new Lookup($this->klasifikasi, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
+                break;
+            case "id-ID":
                 $this->klasifikasi->Lookup = new Lookup($this->klasifikasi, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
             default:
@@ -409,6 +415,9 @@ class Letters extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
+                $this->status->Lookup = new Lookup($this->status, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
+                break;
+            case "id-ID":
                 $this->status->Lookup = new Lookup($this->status, 'letters', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
             default:

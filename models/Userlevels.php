@@ -184,6 +184,9 @@ class Userlevels extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->Hierarchy->Lookup = new Lookup($this->Hierarchy, 'userlevels', false, 'ID', ["Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Name`");
                 break;
+            case "id-ID":
+                $this->Hierarchy->Lookup = new Lookup($this->Hierarchy, 'userlevels', false, 'ID', ["Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Name`");
+                break;
             default:
                 $this->Hierarchy->Lookup = new Lookup($this->Hierarchy, 'userlevels', false, 'ID', ["Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Name`");
                 break;
@@ -217,6 +220,9 @@ class Userlevels extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
+                $this->Level_Origin->Lookup = new Lookup($this->Level_Origin, 'userlevels', false, 'ID', ["Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Name`");
+                break;
+            case "id-ID":
                 $this->Level_Origin->Lookup = new Lookup($this->Level_Origin, 'userlevels', false, 'ID', ["Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Name`");
                 break;
             default:

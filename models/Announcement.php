@@ -173,6 +173,9 @@ class Announcement extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->Is_Active->Lookup = new Lookup($this->Is_Active, 'announcement', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
+            case "id-ID":
+                $this->Is_Active->Lookup = new Lookup($this->Is_Active, 'announcement', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
+                break;
             default:
                 $this->Is_Active->Lookup = new Lookup($this->Is_Active, 'announcement', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
@@ -285,6 +288,9 @@ class Announcement extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->_Language->Lookup = new Lookup($this->_Language, 'languages', false, 'Language_Code', ["Language_Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Language_Name`");
                 break;
+            case "id-ID":
+                $this->_Language->Lookup = new Lookup($this->_Language, 'languages', false, 'Language_Code', ["Language_Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Language_Name`");
+                break;
             default:
                 $this->_Language->Lookup = new Lookup($this->_Language, 'languages', false, 'Language_Code', ["Language_Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Language_Name`");
                 break;
@@ -319,6 +325,9 @@ class Announcement extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
+                $this->Auto_Publish->Lookup = new Lookup($this->Auto_Publish, 'announcement', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
+                break;
+            case "id-ID":
                 $this->Auto_Publish->Lookup = new Lookup($this->Auto_Publish, 'announcement', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
             default:
@@ -428,6 +437,9 @@ class Announcement extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->Created_By->Lookup = new Lookup($this->Created_By, 'users', false, 'Username', ["FirstName","LastName","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`FirstName`, ''),'" . ValueSeparator(1, $this->Created_By) . "',COALESCE(`LastName`,''))");
                 break;
+            case "id-ID":
+                $this->Created_By->Lookup = new Lookup($this->Created_By, 'users', false, 'Username', ["FirstName","LastName","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`FirstName`, ''),'" . ValueSeparator(1, $this->Created_By) . "',COALESCE(`LastName`,''))");
+                break;
             default:
                 $this->Created_By->Lookup = new Lookup($this->Created_By, 'users', false, 'Username', ["FirstName","LastName","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`FirstName`, ''),'" . ValueSeparator(1, $this->Created_By) . "',COALESCE(`LastName`,''))");
                 break;
@@ -461,6 +473,9 @@ class Announcement extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
+                $this->Translated_ID->Lookup = new Lookup($this->Translated_ID, 'announcement', false, 'Announcement_ID', ["Topic","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Topic`");
+                break;
+            case "id-ID":
                 $this->Translated_ID->Lookup = new Lookup($this->Translated_ID, 'announcement', false, 'Announcement_ID', ["Topic","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Topic`");
                 break;
             default:

@@ -1415,17 +1415,17 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.18.0",
-            "version_normalized": "2.18.0.0",
+            "version": "2.18.1",
+            "version_normalized": "2.18.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "a7de6c3c6c3c022f5cfc337f8ede6a14460cf77e"
+                "reference": "8fcc6a862f2e7b94eb4221fd0819ddba3d30ab26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/a7de6c3c6c3c022f5cfc337f8ede6a14460cf77e",
-                "reference": "a7de6c3c6c3c022f5cfc337f8ede6a14460cf77e",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/8fcc6a862f2e7b94eb4221fd0819ddba3d30ab26",
+                "reference": "8fcc6a862f2e7b94eb4221fd0819ddba3d30ab26",
                 "shasum": ""
             },
             "require": {
@@ -1441,7 +1441,7 @@
                 "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
                 "whoops/soap": "Formats errors as SOAP responses"
             },
-            "time": "2025-03-15T12:00:00+00:00",
+            "time": "2025-06-03T18:56:14+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1477,7 +1477,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.18.0"
+                "source": "https://github.com/filp/whoops/tree/2.18.1"
             },
             "funding": [
                 {
@@ -2390,8 +2390,8 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v11.45.0",
-            "version_normalized": "11.45.0.0",
+            "version": "v11.45.1",
+            "version_normalized": "11.45.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -2449,8 +2449,8 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v11.45.0",
-            "version_normalized": "11.45.0.0",
+            "version": "v11.45.1",
+            "version_normalized": "11.45.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -2498,8 +2498,8 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v11.45.0",
-            "version_normalized": "11.45.0.0",
+            "version": "v11.45.1",
+            "version_normalized": "11.45.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -2549,8 +2549,8 @@
         },
         {
             "name": "illuminate/encryption",
-            "version": "v11.45.0",
-            "version_normalized": "11.45.0.0",
+            "version": "v11.45.1",
+            "version_normalized": "11.45.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/encryption.git",
@@ -2603,8 +2603,8 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v11.45.0",
-            "version_normalized": "11.45.0.0",
+            "version": "v11.45.1",
+            "version_normalized": "11.45.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -2673,8 +2673,8 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v11.45.0",
-            "version_normalized": "11.45.0.0",
+            "version": "v11.45.1",
+            "version_normalized": "11.45.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -2722,8 +2722,8 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v11.45.0",
-            "version_normalized": "11.45.0.0",
+            "version": "v11.45.1",
+            "version_normalized": "11.45.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
@@ -4320,17 +4320,17 @@
         },
         {
             "name": "php-di/php-di",
-            "version": "7.0.10",
-            "version_normalized": "7.0.10.0",
+            "version": "7.0.11",
+            "version_normalized": "7.0.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-DI/PHP-DI.git",
-                "reference": "0d1ed64126577e9a095b3204dcaee58cf76432c2"
+                "reference": "32f111a6d214564520a57831d397263e8946c1d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/0d1ed64126577e9a095b3204dcaee58cf76432c2",
-                "reference": "0d1ed64126577e9a095b3204dcaee58cf76432c2",
+                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/32f111a6d214564520a57831d397263e8946c1d2",
+                "reference": "32f111a6d214564520a57831d397263e8946c1d2",
                 "shasum": ""
             },
             "require": {
@@ -4352,7 +4352,7 @@
             "suggest": {
                 "friendsofphp/proxy-manager-lts": "Install it if you want to use lazy injection (version ^1)"
             },
-            "time": "2025-04-22T08:53:15+00:00",
+            "time": "2025-06-03T07:45:57+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -4380,7 +4380,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-DI/PHP-DI/issues",
-                "source": "https://github.com/PHP-DI/PHP-DI/tree/7.0.10"
+                "source": "https://github.com/PHP-DI/PHP-DI/tree/7.0.11"
             },
             "funding": [
                 {

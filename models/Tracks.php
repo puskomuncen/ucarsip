@@ -215,6 +215,9 @@ class Tracks extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->_action->Lookup = new Lookup($this->_action, 'tracks', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
+            case "id-ID":
+                $this->_action->Lookup = new Lookup($this->_action, 'tracks', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
+                break;
             default:
                 $this->_action->Lookup = new Lookup($this->_action, 'tracks', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;

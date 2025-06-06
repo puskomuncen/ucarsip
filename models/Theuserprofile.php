@@ -227,6 +227,9 @@ class Theuserprofile extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->UserLevel->Lookup = new Lookup($this->UserLevel, 'userlevels', false, 'ID', ["Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Name`");
                 break;
+            case "id-ID":
+                $this->UserLevel->Lookup = new Lookup($this->UserLevel, 'userlevels', false, 'ID', ["Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Name`");
+                break;
             default:
                 $this->UserLevel->Lookup = new Lookup($this->UserLevel, 'userlevels', false, 'ID', ["Name","","",""], '', "", [], [], [], [], [], [], false, '', '', "`Name`");
                 break;
@@ -450,6 +453,9 @@ class Theuserprofile extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->Gender->Lookup = new Lookup($this->Gender, 'theuserprofile', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
+            case "id-ID":
+                $this->Gender->Lookup = new Lookup($this->Gender, 'theuserprofile', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
+                break;
             default:
                 $this->Gender->Lookup = new Lookup($this->Gender, 'theuserprofile', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
@@ -507,6 +513,9 @@ class Theuserprofile extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
+                $this->Activated->Lookup = new Lookup($this->Activated, 'theuserprofile', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
+                break;
+            case "id-ID":
                 $this->Activated->Lookup = new Lookup($this->Activated, 'theuserprofile', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
             default:
@@ -585,6 +594,9 @@ class Theuserprofile extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
+                $this->ActiveStatus->Lookup = new Lookup($this->ActiveStatus, 'theuserprofile', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
+                break;
+            case "id-ID":
                 $this->ActiveStatus->Lookup = new Lookup($this->ActiveStatus, 'theuserprofile', false, '', ["","","",""], '', "", [], [], [], [], [], [], false, '', '', "");
                 break;
             default:
@@ -671,6 +683,9 @@ class Theuserprofile extends DbTable implements LookupTableInterface
             case "en-US":
                 $this->CreatedBy->Lookup = new Lookup($this->CreatedBy, 'users', false, 'Username', ["FirstName","LastName","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`FirstName`, ''),'" . ValueSeparator(1, $this->CreatedBy) . "',COALESCE(`LastName`,''))");
                 break;
+            case "id-ID":
+                $this->CreatedBy->Lookup = new Lookup($this->CreatedBy, 'users', false, 'Username', ["FirstName","LastName","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`FirstName`, ''),'" . ValueSeparator(1, $this->CreatedBy) . "',COALESCE(`LastName`,''))");
+                break;
             default:
                 $this->CreatedBy->Lookup = new Lookup($this->CreatedBy, 'users', false, 'Username', ["FirstName","LastName","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`FirstName`, ''),'" . ValueSeparator(1, $this->CreatedBy) . "',COALESCE(`LastName`,''))");
                 break;
@@ -729,6 +744,9 @@ class Theuserprofile extends DbTable implements LookupTableInterface
         global $CurrentLanguage;
         switch ($CurrentLanguage) {
             case "en-US":
+                $this->UpdatedBy->Lookup = new Lookup($this->UpdatedBy, 'users', false, 'Username', ["FirstName","LastName","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`FirstName`, ''),'" . ValueSeparator(1, $this->UpdatedBy) . "',COALESCE(`LastName`,''))");
+                break;
+            case "id-ID":
                 $this->UpdatedBy->Lookup = new Lookup($this->UpdatedBy, 'users', false, 'Username', ["FirstName","LastName","",""], '', "", [], [], [], [], [], [], false, '', '', "CONCAT(COALESCE(`FirstName`, ''),'" . ValueSeparator(1, $this->UpdatedBy) . "',COALESCE(`LastName`,''))");
                 break;
             default:

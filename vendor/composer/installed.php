@@ -182,9 +182,9 @@
             'dev_requirement' => false,
         ),
         'filp/whoops' => array(
-            'pretty_version' => '2.18.0',
-            'version' => '2.18.0.0',
-            'reference' => 'a7de6c3c6c3c022f5cfc337f8ede6a14460cf77e',
+            'pretty_version' => '2.18.1',
+            'version' => '2.18.1.0',
+            'reference' => '8fcc6a862f2e7b94eb4221fd0819ddba3d30ab26',
             'type' => 'library',
             'install_path' => __DIR__ . '/../filp/whoops',
             'aliases' => array(),
@@ -299,8 +299,8 @@
             'dev_requirement' => false,
         ),
         'illuminate/collections' => array(
-            'pretty_version' => 'v11.45.0',
-            'version' => '11.45.0.0',
+            'pretty_version' => 'v11.45.1',
+            'version' => '11.45.1.0',
             'reference' => '856b1da953e46281ba61d7c82d337072d3ee1825',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/collections',
@@ -308,8 +308,8 @@
             'dev_requirement' => false,
         ),
         'illuminate/conditionable' => array(
-            'pretty_version' => 'v11.45.0',
-            'version' => '11.45.0.0',
+            'pretty_version' => 'v11.45.1',
+            'version' => '11.45.1.0',
             'reference' => '319b717e0587bd7c8a3b44464f0e27867b4bcda9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/conditionable',
@@ -317,8 +317,8 @@
             'dev_requirement' => false,
         ),
         'illuminate/contracts' => array(
-            'pretty_version' => 'v11.45.0',
-            'version' => '11.45.0.0',
+            'pretty_version' => 'v11.45.1',
+            'version' => '11.45.1.0',
             'reference' => '4b2a67d1663f50085bc91e6371492697a5d2d4e8',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/contracts',
@@ -326,8 +326,8 @@
             'dev_requirement' => false,
         ),
         'illuminate/encryption' => array(
-            'pretty_version' => 'v11.45.0',
-            'version' => '11.45.0.0',
+            'pretty_version' => 'v11.45.1',
+            'version' => '11.45.1.0',
             'reference' => 'abd46d355466be65648f1f2503076d204037d699',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/encryption',
@@ -335,8 +335,8 @@
             'dev_requirement' => false,
         ),
         'illuminate/filesystem' => array(
-            'pretty_version' => 'v11.45.0',
-            'version' => '11.45.0.0',
+            'pretty_version' => 'v11.45.1',
+            'version' => '11.45.1.0',
             'reference' => 'd1f217b75ee193bbe27f31df8a94ff6759f31469',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/filesystem',
@@ -344,8 +344,8 @@
             'dev_requirement' => false,
         ),
         'illuminate/macroable' => array(
-            'pretty_version' => 'v11.45.0',
-            'version' => '11.45.0.0',
+            'pretty_version' => 'v11.45.1',
+            'version' => '11.45.1.0',
             'reference' => 'e1cb9e51b9ed5d3c9bc1ab431d0a52fe42a990ed',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/macroable',
@@ -353,8 +353,8 @@
             'dev_requirement' => false,
         ),
         'illuminate/support' => array(
-            'pretty_version' => 'v11.45.0',
-            'version' => '11.45.0.0',
+            'pretty_version' => 'v11.45.1',
+            'version' => '11.45.1.0',
             'reference' => '9732f41d7a9836a2c466ab06460efc732aeb417a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/support',
@@ -566,9 +566,9 @@
             'dev_requirement' => false,
         ),
         'php-di/php-di' => array(
-            'pretty_version' => '7.0.10',
-            'version' => '7.0.10.0',
-            'reference' => '0d1ed64126577e9a095b3204dcaee58cf76432c2',
+            'pretty_version' => '7.0.11',
+            'version' => '7.0.11.0',
+            'reference' => '32f111a6d214564520a57831d397263e8946c1d2',
             'type' => 'library',
             'install_path' => __DIR__ . '/../php-di/php-di',
             'aliases' => array(),
@@ -622,8 +622,8 @@
         'psr/container-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '^1.0',
-                1 => '1.1|2.0',
+                0 => '1.1|2.0',
+                1 => '^1.0',
             ),
         ),
         'psr/event-dispatcher' => array(
